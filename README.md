@@ -1,5 +1,7 @@
 
 ## In this project
+[Android Jetpack](https://developer.android.com/jetpack/docs/getting-started)  
+[AndroidX](https://developer.android.com/jetpack/androidx)  
 [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)  
 [LiveData](https://developer.android.com/topic/libraries/architecture/livedata.html)  
 [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel.html)  
