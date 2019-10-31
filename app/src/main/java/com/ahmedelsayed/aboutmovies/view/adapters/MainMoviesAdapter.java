@@ -17,11 +17,9 @@ import java.util.List;
 
 public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.ItemViewHolder>{
 
-    private Context context;
     private List<MoviesModel.Results> items;
 
-    public MainMoviesAdapter(Context context, List<MoviesModel.Results> items) {
-        this.context = context;
+    public MainMoviesAdapter(List<MoviesModel.Results> items) {
         this.items = items;
     }
 
@@ -46,15 +44,15 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.It
     }
 
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ItemViewHolder extends RecyclerView.ViewHolder {
         MainMoviesAdapterBinding mainMoviesAdapterBinding;
 
-        public ItemViewHolder(@NonNull MainMoviesAdapterBinding itemView) {
+        ItemViewHolder(@NonNull MainMoviesAdapterBinding itemView) {
             super(itemView.getRoot());
             mainMoviesAdapterBinding = itemView;
         }
 
-        public void bind(int position) {
+        void bind(int position) {
             MoviesModel.Results results = items.get(position);
             mainMoviesAdapterBinding.setMainMovies(results);
         }

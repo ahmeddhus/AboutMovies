@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setRV(List<MoviesModel.Results> mainMoviesModels){
-        mainMoviesAdapter = new MainMoviesAdapter(MainActivity.this, mainMoviesModels);
+        mainMoviesAdapter = new MainMoviesAdapter(mainMoviesModels);
         rv.setAdapter(mainMoviesAdapter);
         rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }

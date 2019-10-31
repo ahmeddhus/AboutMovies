@@ -8,6 +8,8 @@ import com.ahmedelsayed.aboutmovies.basics.RetrofitClient;
 import com.ahmedelsayed.aboutmovies.basics.RetrofitService;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
 
+import org.jetbrains.annotations.NotNull;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,16 +35,16 @@ public class MoviesRepository {
 
         retrofitClient.getMovies(apiKey, langyage, page).enqueue(new Callback<MoviesModel>() {
             @Override
-            public void onResponse(Call<MoviesModel> call, Response<MoviesModel> response) {
+            public void onResponse(@NotNull Call<MoviesModel> call, @NotNull Response<MoviesModel> response) {
                 if (response.isSuccessful())
                     newData.setValue(response.body());
-                Log.e("S", response.message());
+                Log.e("getMoviesonFailure: ", response.message());
             }
 
             @Override
-            public void onFailure(Call<MoviesModel> call, Throwable t) {
+            public void onFailure(@NotNull Call<MoviesModel> call, @NotNull Throwable t) {
                 newData.setValue(null);
-                Log.e("S", t.getMessage());
+                Log.e("getMoviesonFailure: ", t.getMessage());
             }
         });
 
