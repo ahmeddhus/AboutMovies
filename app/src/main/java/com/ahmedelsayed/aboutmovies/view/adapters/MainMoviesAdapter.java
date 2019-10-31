@@ -1,4 +1,4 @@
-package com.ahmedelsayed.aboutmovies.view;
+package com.ahmedelsayed.aboutmovies.view.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,7 +20,7 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.It
     private Context context;
     private List<MoviesModel.Results> items;
 
-    MainMoviesAdapter(Context context, List<MoviesModel.Results> items) {
+    public MainMoviesAdapter(Context context, List<MoviesModel.Results> items) {
         this.context = context;
         this.items = items;
     }

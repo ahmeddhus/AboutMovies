@@ -1,4 +1,4 @@
-package com.ahmedelsayed.aboutmovies.view;
+package com.ahmedelsayed.aboutmovies.view.activities;
 
 import android.os.Bundle;
 
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
+import com.ahmedelsayed.aboutmovies.view.adapters.MainMoviesAdapter;
 import com.ahmedelsayed.aboutmovies.viewmodels.MoviesViewModel;
 
 import java.util.List;
