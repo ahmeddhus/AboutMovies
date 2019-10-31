@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="mainMovies"
+            type="com.ahmedelsayed.aboutmovies.models.MainMoviesModel.Results" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+        <TextView
+            android:id="@+id/movies_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{mainMovies.title}"
+            android:textSize="24sp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+</layout>
