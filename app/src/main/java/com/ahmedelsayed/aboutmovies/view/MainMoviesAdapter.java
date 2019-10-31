@@ -2,7 +2,7 @@ package com.ahmedelsayed.aboutmovies.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
+
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,16 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.databinding.MainMoviesAdapterBinding;
-import com.ahmedelsayed.aboutmovies.models.MainMoviesModel;
+import com.ahmedelsayed.aboutmovies.models.MoviesModel;
 
 import java.util.List;
 
 public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.ItemViewHolder>{
 
-    Context context;
-    List<MainMoviesModel.Results> items;
+    private Context context;
+    private List<MoviesModel.Results> items;
 
-    public MainMoviesAdapter(Context context, List<MainMoviesModel.Results> items) {
+    MainMoviesAdapter(Context context, List<MoviesModel.Results> items) {
         this.context = context;
         this.items = items;
     }
@@ -55,8 +55,8 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.It
         }
 
         public void bind(int position) {
-            MainMoviesModel.Results mainMoviesModel = items.get(position);
-            mainMoviesAdapterBinding.setMainMovies(mainMoviesModel);
+            MoviesModel.Results results = items.get(position);
+            mainMoviesAdapterBinding.setMainMovies(results);
         }
     }
 }

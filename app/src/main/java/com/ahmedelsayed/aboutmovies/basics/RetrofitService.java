@@ -1,4 +1,4 @@
-package com.ahmedelsayed.aboutmovies;
+package com.ahmedelsayed.aboutmovies.basics;
 
 import java.util.concurrent.TimeUnit;
 

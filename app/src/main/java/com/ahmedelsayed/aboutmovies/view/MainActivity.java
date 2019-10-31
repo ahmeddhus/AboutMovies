@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedelsayed.aboutmovies.R;
-import com.ahmedelsayed.aboutmovies.models.MainMoviesModel;
+import com.ahmedelsayed.aboutmovies.models.MoviesModel;
 import com.ahmedelsayed.aboutmovies.viewmodels.MoviesViewModel;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         moviesViewModel.getMovies().observe(this, mainMoviesModels -> setRV(mainMoviesModels.getResults()));
     }
 
-    private void setRV(List<MainMoviesModel.Results> mainMoviesModels){
+    private void setRV(List<MoviesModel.Results> mainMoviesModels){
         mainMoviesAdapter = new MainMoviesAdapter(MainActivity.this, mainMoviesModels);
         rv.setAdapter(mainMoviesAdapter);
         rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
