@@ -12,3 +12,4 @@
 [Retrofit](https://square.github.io/retrofit/)  
 [Gson](https://github.com/google/gson)  
 [Butter Knife](https://jakewharton.github.io/butterknife/)  
+[Instabug](https://instabug.com/developers)  
