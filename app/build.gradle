@@ -33,6 +33,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
 
     //Test
     testImplementation 'junit:junit:4.12'
@@ -54,6 +55,9 @@ dependencies {
     def butterknife_version = "10.2.0"
     implementation "com.jakewharton:butterknife:$butterknife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
+
+    //Istabug
+    implementation 'com.instabug.library:instabug:8.7.2'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
 }

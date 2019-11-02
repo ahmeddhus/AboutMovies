@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedelsayed.aboutmovies.R;
+import com.ahmedelsayed.aboutmovies.basics.BaseActivity;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
 import com.ahmedelsayed.aboutmovies.view.adapters.MainMoviesAdapter;
 import com.ahmedelsayed.aboutmovies.viewmodels.MoviesViewModel;
@@ -17,7 +18,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+
+
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.rv)
     RecyclerView rv;
