@@ -76,7 +76,7 @@ public class MoviesModel {
         }
 
         public double getVote_average() {
-            return vote_average;
+            return vote_average/2;
         }
 
         public String getTitle() {

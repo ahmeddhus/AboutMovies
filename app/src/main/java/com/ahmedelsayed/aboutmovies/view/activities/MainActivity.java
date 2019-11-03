@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.rv)
+    @BindView(R.id.rv_popular)
     RecyclerView rv;
 
     MainMoviesAdapter mainMoviesAdapter;
@@ -42,6 +42,6 @@ public class MainActivity extends BaseActivity {
     private void setRV(List<MoviesModel.Results> mainMoviesModels){
         mainMoviesAdapter = new MainMoviesAdapter(mainMoviesModels);
         rv.setAdapter(mainMoviesAdapter);
-        rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        rv.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 }
