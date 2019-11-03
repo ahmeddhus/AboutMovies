@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
-            name="movie"
-            type="com.ahmedelsayed.aboutmovies.models.MovieDetailsModel" />
+            name="mdetails"
+            type="com.ahmedelsayed.aboutmovies.models.MovieDetailsModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,15 +39,16 @@
                         android:id="@+id/imageView"
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
-                        android:scaleType="center"
+                        android:scaleType="fitXY"
                         android:background="@color/colorPrimaryDark"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:loadCover="@{movie.backdrop_path}"/>
+                        app:backdrop_path="@{mdetails.backdrop_path}"/>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:padding="8dp"
                         android:layout_marginStart="60dp"
                         android:layout_marginEnd="60dp"
                         app:cardCornerRadius="12dp"
@@ -60,31 +60,33 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="130dp"
+                            android:layout_marginStart="150dp"
                             android:layout_marginTop="18dp"
                             android:orientation="vertical">
                             <TextView
                                 android:id="@+id/movies_title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{movie.title}"
+                                android:text="@{mdetails.title}"
+                                android:layout_marginBottom="5dp"
                                 android:textColor="@color/colorAccent"
-                                android:textSize="14sp" />
+                                android:textSize="18sp"
+                                android:textStyle=""/>
                             <RatingBar
                                 android:id="@+id/rating"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:theme="@style/RatingBar"
-                                android:rating="@{Float.valueOf(Double.toString(movie.vote_average))}"
+                                android:rating="@{Float.valueOf(Double.toString(mdetails.vote_average))}"
                                 style="?android:attr/ratingBarStyleSmall"/>
                             <TextView
                                 android:id="@+id/movies_Date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{movie.release_date}"
+                                android:text="@{mdetails.release_date}"
                                 android:textColor="@color/colorAccent"
-                                android:textSize="14sp" />
-
+                                android:textSize="14sp"
+                                android:paddingBottom="8dp" />
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -104,7 +106,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
-                            app:loadPoster="@{movie.poster_path}" />
+                            app:poster_path="@{mdetails.poster_path}" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -125,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="Storyline"
+            android:text="@string/storyline"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -140,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
-            android:text="@{movie.overview}"
+            android:text="@{mdetails.tagline}"
             android:textColor="@color/colorAccent"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -149,4 +151,5 @@
             app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

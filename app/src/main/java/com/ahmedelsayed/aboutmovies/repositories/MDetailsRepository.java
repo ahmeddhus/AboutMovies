@@ -28,7 +28,7 @@ public class MDetailsRepository {
         retrofitClient = RetrofitService.getRetro().create(RetrofitClient.class);
     }
 
-    public MutableLiveData<MovieDetailsModel> getMDetails(String movieId, String apiKey, String langyage){
+    public MutableLiveData<MovieDetailsModel> getMDetails(int movieId, String apiKey, String langyage){
         MutableLiveData<MovieDetailsModel> newData = new MutableLiveData<>();
 
         retrofitClient.getMDetails(movieId, apiKey, langyage).enqueue(new Callback<MovieDetailsModel>() {

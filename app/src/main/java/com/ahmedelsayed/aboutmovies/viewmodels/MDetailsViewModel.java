@@ -15,7 +15,7 @@ public class MDetailsViewModel extends ViewModel {
     private MutableLiveData<MovieDetailsModel> mutableLiveData;
     private MDetailsRepository mDetailsRepository;
 
-    public void inti(String movieId){
+    public void inti(int movieId){
         if(mutableLiveData != null)
             return;
 

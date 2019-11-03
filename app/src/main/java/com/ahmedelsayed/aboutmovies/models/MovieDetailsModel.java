@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public abstract class MovieDetailsModel {
+public class MovieDetailsModel {
     @SerializedName("vote_count")
     private int vote_count;
     @SerializedName("vote_average")
@@ -48,16 +48,14 @@ public abstract class MovieDetailsModel {
     private String imdb_id;
     @SerializedName("id")
     private int id;
-    @SerializedName("homepage")
-    private String homepage;
     @SerializedName("genres")
     private List<Genres> genres;
+    @SerializedName("adult")
+    private boolean adult;
     @SerializedName("budget")
     private int budget;
     @SerializedName("backdrop_path")
     private String backdrop_path;
-    @SerializedName("adult")
-    private boolean adult;
 
     public int getVote_count() {
         return vote_count;
@@ -112,7 +110,7 @@ public abstract class MovieDetailsModel {
     }
 
     @BindingAdapter({"bind:poster_path"})
-    public static void loadPoster(ImageView view, String poster_path) {
+    public static void load_poster(ImageView view, String poster_path) {
         Picasso.get()
                 .load(poster_path)
                 .into(view);
@@ -142,12 +140,12 @@ public abstract class MovieDetailsModel {
         return id;
     }
 
-    public String getHomepage() {
-        return homepage;
-    }
-
     public List<Genres> getGenres() {
         return genres;
+    }
+
+    public boolean getAdult() {
+        return adult;
     }
 
     public int getBudget() {
@@ -159,14 +157,10 @@ public abstract class MovieDetailsModel {
     }
 
     @BindingAdapter({"bind:backdrop_path"})
-    public static void loadCover(ImageView view, String backdrop_path) {
+    public static void load_cover(ImageView view, String backdrop_path) {
         Picasso.get()
                 .load(backdrop_path)
                 .into(view);
-    }
-
-    public boolean getAdult() {
-        return adult;
     }
 
     public static class Spoken_languages {
@@ -241,3 +235,5 @@ public abstract class MovieDetailsModel {
         }
     }
 }
+
+
