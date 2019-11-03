@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -7,16 +9,27 @@
             type="com.ahmedelsayed.aboutmovies.models.MoviesModel.Results" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/movies"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            tools:ignore="ContentDescription"
+            app:poster_path="@{mainMovies.poster_path}"/>
+
         <TextView
             android:id="@+id/movies_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
             android:text="@{mainMovies.title}"
             android:textSize="24sp"
-            android:layout_centerInParent="true"/>
-    </RelativeLayout>
+            android:layout_gravity="center" />
+    </LinearLayout>
 </layout>

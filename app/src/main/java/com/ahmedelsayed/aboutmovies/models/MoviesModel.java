@@ -1,6 +1,11 @@
 package com.ahmedelsayed.aboutmovies.models;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
 import com.google.gson.annotations.SerializedName;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -103,7 +108,14 @@ public class MoviesModel {
         }
 
         public String getPoster_path() {
-            return poster_path;
+            return "https://image.tmdb.org/t/p/w500"+poster_path;
+        }
+
+        @BindingAdapter({"bind:poster_path"})
+        public static void loadImage(ImageView view, String poster_path) {
+            Picasso.get()
+                    .load(poster_path)
+                    .into(view);
         }
 
         public boolean getVideo() {
