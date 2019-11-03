@@ -1,5 +1,6 @@
 package com.ahmedelsayed.aboutmovies.view.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
 
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnItemClickListener{
 
     @BindView(R.id.rv_popular)
     RecyclerView rv;
@@ -40,8 +41,13 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setRV(List<MoviesModel.Results> mainMoviesModels){
-        mainMoviesAdapter = new MainMoviesAdapter(mainMoviesModels);
+        mainMoviesAdapter = new MainMoviesAdapter(mainMoviesModels, this);
         rv.setAdapter(mainMoviesAdapter);
         rv.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    @Override
+    public void onItemClikced(int position) {
+        startActivity(new Intent(this, MovieDetailsActivity.class));
     }
 }

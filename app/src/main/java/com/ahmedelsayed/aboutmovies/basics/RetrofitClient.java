@@ -1,6 +1,8 @@
 package com.ahmedelsayed.aboutmovies.basics;
 
+import com.ahmedelsayed.aboutmovies.models.MovieDetailsModel;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
+
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -12,5 +14,10 @@ public interface RetrofitClient {
     Call<MoviesModel> getMovies(@Query("api_key") String apiKey,
                                 @Query("language") String language,
                                 @Query("page") int page);
+
+    @GET("/movie/{movie_id}")
+    Call<MovieDetailsModel> getMDetails(@Query("movie_id") String movieId,
+                                        @Query("api_key") String apiKey,
+                                        @Query("language") String language);
 
 }

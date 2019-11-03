@@ -3,6 +3,7 @@ package com.ahmedelsayed.aboutmovies.view.adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -18,9 +19,11 @@ import java.util.List;
 public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.ItemViewHolder>{
 
     private List<MoviesModel.Results> items;
+    MainMoviesAdapter.OnItemClickListener mOnItemClickListener;
 
-    public MainMoviesAdapter(List<MoviesModel.Results> items) {
+    public MainMoviesAdapter(List<MoviesModel.Results> items, OnItemClickListener mOnItemClickListener) {
         this.items = items;
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     @NonNull
@@ -43,18 +46,27 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.It
         return items.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClikced(int position);
+    }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         MainMoviesAdapterBinding mainMoviesAdapterBinding;
 
         ItemViewHolder(@NonNull MainMoviesAdapterBinding itemView) {
             super(itemView.getRoot());
             mainMoviesAdapterBinding = itemView;
+            itemView.getRoot().setOnClickListener(this);
         }
 
         void bind(int position) {
             MoviesModel.Results results = items.get(position);
             mainMoviesAdapterBinding.setMainMovies(results);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mOnItemClickListener.onItemClikced(getAdapterPosition());
         }
     }
 }

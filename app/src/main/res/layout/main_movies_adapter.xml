@@ -25,10 +25,11 @@
             android:background="@drawable/main_item_shape">
             <ImageView
                 android:id="@+id/movies"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:background="@color/colorAccent"
+                android:layout_width="200dp"
+                android:layout_height="300dp"
+                android:scaleType="fitXY"
                 android:layout_gravity="center"
-                tools:ignore="ContentDescription"
                 app:poster_path="@{mainMovies.poster_path}"/>
         </androidx.cardview.widget.CardView>
 
