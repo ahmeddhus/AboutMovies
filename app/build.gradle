@@ -59,7 +59,6 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
 
     // Youtube lib
-    implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.23'
 

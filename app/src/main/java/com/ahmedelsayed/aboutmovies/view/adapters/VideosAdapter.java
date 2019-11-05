@@ -5,16 +5,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedelsayed.aboutmovies.R;
-import com.ahmedelsayed.aboutmovies.basics.ConfigYT;
 import com.ahmedelsayed.aboutmovies.models.VideosModel;
-import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -22,8 +18,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ItemViewHolder>{
 
