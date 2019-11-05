@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.ahmedelsayed.aboutmovies.basics.RetrofitClient;
 import com.ahmedelsayed.aboutmovies.basics.RetrofitService;
 import com.ahmedelsayed.aboutmovies.models.MovieDetailsModel;
-import com.ahmedelsayed.aboutmovies.view.activities.MovieDetailsActivity;
+import com.ahmedelsayed.aboutmovies.models.VideosModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,20 +31,61 @@ public class MDetailsRepository {
     public MutableLiveData<MovieDetailsModel> getMDetails(int movieId, String apiKey, String langyage){
         MutableLiveData<MovieDetailsModel> newData = new MutableLiveData<>();
 
-        retrofitClient.getMDetails(movieId, apiKey, langyage).enqueue(new Callback<MovieDetailsModel>() {
+        retrofitClient.getMDetails(movieId).enqueue(new Callback<MovieDetailsModel>() {
             @Override
             public void onResponse(Call<MovieDetailsModel> call, Response<MovieDetailsModel> response) {
                 if (response.isSuccessful())
                     newData.setValue(response.body());
-                Log.e("getMoviesonFailure: ", response.message());
+                Log.e("getMovieonFailure: ", response.message());
             }
 
             @Override
             public void onFailure(Call<MovieDetailsModel> call, Throwable t) {
                 newData.setValue(null);
-                Log.e("getMoviesonFailure: ", t.getMessage());
+                Log.e("getMovieonFailure: ", t.getMessage());
+            }
+        });
+        return newData;
+    }
+
+    public MutableLiveData<VideosModel> getVideos(int movieId, String apiKey){
+        MutableLiveData<VideosModel> newData = new MutableLiveData<>();
+
+        retrofitClient.getVideos(movieId, apiKey).enqueue(new Callback<VideosModel>() {
+            @Override
+            public void onResponse(Call<VideosModel> call, Response<VideosModel> response) {
+                if (response.isSuccessful())
+                    newData.setValue(response.body());
+                Log.e("getMovieonFailure: ", response.message());
+            }
+
+            @Override
+            public void onFailure(Call<VideosModel> call, Throwable t) {
+                newData.setValue(null);
+                Log.e("getMovieonFailure: ", t.getMessage());
             }
         });
         return newData;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

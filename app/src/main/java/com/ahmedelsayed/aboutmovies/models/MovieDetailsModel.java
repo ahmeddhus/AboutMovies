@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class MovieDetailsModel {
+
     @SerializedName("vote_count")
     private int vote_count;
     @SerializedName("vote_average")
@@ -48,21 +49,23 @@ public class MovieDetailsModel {
     private String imdb_id;
     @SerializedName("id")
     private int id;
+    @SerializedName("homepage")
+    private String homepage;
     @SerializedName("genres")
     private List<Genres> genres;
-    @SerializedName("adult")
-    private boolean adult;
     @SerializedName("budget")
     private int budget;
     @SerializedName("backdrop_path")
     private String backdrop_path;
+    @SerializedName("adult")
+    private boolean adult;
 
     public int getVote_count() {
         return vote_count;
     }
 
     public double getVote_average() {
-        return vote_average/2;
+        return vote_average;
     }
 
     public boolean getVideo() {
@@ -74,7 +77,7 @@ public class MovieDetailsModel {
     }
 
     public String getTagline() {
-        return tagline;
+        return "\""+tagline+"\"";
     }
 
     public String getStatus() {
@@ -105,23 +108,8 @@ public class MovieDetailsModel {
         return production_companies;
     }
 
-    public String getPoster_path() {
-        return "https://image.tmdb.org/t/p/w500"+poster_path;
-    }
-
-    @BindingAdapter({"bind:poster_path"})
-    public static void load_poster(ImageView view, String poster_path) {
-        Picasso.get()
-                .load(poster_path)
-                .into(view);
-    }
-
     public double getPopularity() {
         return popularity;
-    }
-
-    public String getOverview() {
-        return overview;
     }
 
     public String getOriginal_title() {
@@ -140,20 +128,36 @@ public class MovieDetailsModel {
         return id;
     }
 
-    public List<Genres> getGenres() {
-        return genres;
+    public String getHomepage() {
+        return homepage;
     }
 
-    public boolean getAdult() {
-        return adult;
+    public String getOverview() {
+        return overview;
+    }
+
+    public List<Genres> getGenres() {
+        return genres;
     }
 
     public int getBudget() {
         return budget;
     }
 
+
+    public String getPoster_path() {
+        return "https://image.tmdb.org/t/p/w500" + poster_path;
+    }
+
+    @BindingAdapter({"bind:poster_path"})
+    public static void load_poster(ImageView view, String poster_path) {
+        Picasso.get()
+                .load(poster_path)
+                .into(view);
+    }
+
     public String getBackdrop_path() {
-        return "https://image.tmdb.org/t/p/w500"+backdrop_path;
+        return "https://image.tmdb.org/t/p/w500" + backdrop_path;
     }
 
     @BindingAdapter({"bind:backdrop_path"})
@@ -161,6 +165,10 @@ public class MovieDetailsModel {
         Picasso.get()
                 .load(backdrop_path)
                 .into(view);
+    }
+
+    public boolean getAdult() {
+        return adult;
     }
 
     public static class Spoken_languages {
@@ -235,5 +243,3 @@ public class MovieDetailsModel {
         }
     }
 }
-
-

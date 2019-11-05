@@ -2,6 +2,7 @@ package com.ahmedelsayed.aboutmovies.basics;
 
 import com.ahmedelsayed.aboutmovies.models.MovieDetailsModel;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
+import com.ahmedelsayed.aboutmovies.models.VideosModel;
 
 
 import retrofit2.Call;
@@ -16,9 +17,11 @@ public interface RetrofitClient {
                                 @Query("language") String language,
                                 @Query("page") int page);
 
-    @GET("movie/{movie_id}")
-    Call<MovieDetailsModel> getMDetails(@Path("movie_id") int movieId,
-                                        @Query("api_key") String apiKey,
-                                        @Query("language") String language);
+    @GET("movie/{movie_id}?api_key=6c20bdc9fb3e86590c16b5f77d4754c7")
+    Call<MovieDetailsModel> getMDetails(@Path("movie_id") int movieId);
 
+    @GET("movie/{movie_id}/videos")
+    Call<VideosModel> getVideos(@Path("movie_id") int movieId,
+                                @Query("api_key") String apiKey);
 }
+//475557

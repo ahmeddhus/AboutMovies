@@ -2,8 +2,10 @@ package com.ahmedelsayed.aboutmovies.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.ahmedelsayed.aboutmovies.view.activities.MovieDetailsActivity.MOVIE_ID;
 
 
 public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnItemClickListener{
@@ -28,7 +31,7 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
 
     MainMoviesAdapter mainMoviesAdapter;
     MoviesViewModel moviesViewModel;
-
+    List<MoviesModel.Results> mainMoviesModels1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +40,10 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
 
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         moviesViewModel.init();
-        moviesViewModel.getMovies().observe(this, mainMoviesModels -> setRV(mainMoviesModels.getResults()));
+        moviesViewModel.getMovies().observe(this, moviesModel -> {
+            setRV(moviesModel.getResults());
+            mainMoviesModels1 = moviesModel.getResults();
+        });
     }
 
     private void setRV(List<MoviesModel.Results> mainMoviesModels){
@@ -48,6 +54,9 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
 
     @Override
     public void onItemClikced(int position) {
-        startActivity(new Intent(this, MovieDetailsActivity.class));
+        int movie_id = mainMoviesModels1.get(position).getId();
+
+        startActivity(new Intent(this, MovieDetailsActivity.class)
+                .putExtra(MOVIE_ID, movie_id));
     }
 }
