@@ -1,4 +1,4 @@
-package com.ahmedelsayed.aboutmovies.basics;
+package com.ahmedelsayed.aboutmovies.basics.retrofit;
 
 import java.util.concurrent.TimeUnit;
 

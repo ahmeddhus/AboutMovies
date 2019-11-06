@@ -9,7 +9,7 @@ import com.ahmedelsayed.aboutmovies.models.VideosModel;
 import com.ahmedelsayed.aboutmovies.repositories.MDetailsRepository;
 
 import static android.provider.MediaStore.Video.VideoColumns.LANGUAGE;
-import static com.ahmedelsayed.aboutmovies.basics.RetrofitService.API_KEY;
+import static com.ahmedelsayed.aboutmovies.basics.retrofit.RetrofitService.API_KEY;
 
 public class MDetailsViewModel extends ViewModel {
 

@@ -27,7 +27,9 @@ import static com.ahmedelsayed.aboutmovies.view.activities.MovieDetailsActivity.
 public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnItemClickListener{
 
     @BindView(R.id.rv_popular)
-    RecyclerView rv;
+    RecyclerView rv_popular;
+    @BindView(R.id.rv_top)
+    RecyclerView rv_top;
 
     MainMoviesAdapter mainMoviesAdapter;
     MoviesViewModel moviesViewModel;
@@ -41,15 +43,22 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         moviesViewModel.init();
         moviesViewModel.getMovies().observe(this, moviesModel -> {
-            setRV(moviesModel.getResults());
+            setRVPopular(moviesModel.getResults());
+            setRVTop(moviesModel.getResults());
             mainMoviesModels1 = moviesModel.getResults();
         });
     }
 
-    private void setRV(List<MoviesModel.Results> mainMoviesModels){
+    private void setRVPopular(List<MoviesModel.Results> mainMoviesModels){
         mainMoviesAdapter = new MainMoviesAdapter(mainMoviesModels, this);
-        rv.setAdapter(mainMoviesAdapter);
-        rv.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        rv_popular.setAdapter(mainMoviesAdapter);
+        rv_popular.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    private void setRVTop(List<MoviesModel.Results> mainMoviesModels){
+        mainMoviesAdapter = new MainMoviesAdapter(mainMoviesModels, this);
+        rv_top.setAdapter(mainMoviesAdapter);
+        rv_top.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 
     @Override

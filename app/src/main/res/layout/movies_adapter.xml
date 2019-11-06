@@ -5,12 +5,12 @@
 
     <data>
         <variable
-            name="mainMovies"
+            name="movies"
             type="com.ahmedelsayed.aboutmovies.models.MoviesModel.Results" />
     </data>
 
     <LinearLayout
-        android:id="@+id/main_movieItem"
+        android:id="@+id/movieItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -24,7 +24,7 @@
             app:cardCornerRadius="12dp"
             android:background="@drawable/main_item_shape">
             <ImageView
-                android:id="@+id/main_movies"
+                android:id="@+id/movies"
                 android:background="@color/colorAccent"
                 android:layout_width="200dp"
                 android:layout_height="300dp"
