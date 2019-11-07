@@ -70,13 +70,3 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.It
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

@@ -26,27 +26,28 @@
             <ImageView
                 android:id="@+id/movies"
                 android:background="@color/colorAccent"
-                android:layout_width="200dp"
-                android:layout_height="300dp"
+                android:layout_width="130dp"
+                android:layout_height="200dp"
                 android:scaleType="fitXY"
                 android:layout_gravity="center"
-                app:poster_path="@{mainMovies.poster_path}"/>
+                app:poster_path="@{movies.poster_path}"/>
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/movies_title"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:textColor="@color/colorAccent"
-            android:text="@{mainMovies.title}"
+            android:text="@{movies.title}"
             android:layout_margin="5dp"
+            android:layout_gravity="center"
             android:textSize="14sp" />
 
         <RatingBar
             android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:rating="@{Float.valueOf(Double.toString(mainMovies.vote_average))}"
+            android:rating="@{Float.valueOf(Double.toString(movies.vote_average))}"
             android:theme="@style/RatingBar"
             style="?android:attr/ratingBarStyleSmall"/>
     </LinearLayout>

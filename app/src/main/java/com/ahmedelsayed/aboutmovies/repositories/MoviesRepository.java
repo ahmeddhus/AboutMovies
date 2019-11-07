@@ -30,15 +30,78 @@ public class MoviesRepository {
         retrofitClient = RetrofitService.getRetro().create(RetrofitClient.class);
     }
 
-    public MutableLiveData<MoviesModel> getMovies(String apiKey, String langyage, int page){
+    public MutableLiveData<MoviesModel> getPopularMovies(String apiKey, String langyage, int page){
         MutableLiveData<MoviesModel> newData = new MutableLiveData<>();
 
-        retrofitClient.getMovies(apiKey, langyage, page).enqueue(new Callback<MoviesModel>() {
+        retrofitClient.getPopularMovies(apiKey, langyage, page).enqueue(new Callback<MoviesModel>() {
             @Override
             public void onResponse(@NotNull Call<MoviesModel> call, @NotNull Response<MoviesModel> response) {
                 if (response.isSuccessful())
                     newData.setValue(response.body());
-                Log.e("getMoviesonFailure: ", response.message());
+                Log.e("getMovies: ", response.message());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<MoviesModel> call, @NotNull Throwable t) {
+                newData.setValue(null);
+                Log.e("getMoviesonFailure: ", t.getMessage());
+            }
+        });
+
+        return newData;
+    }
+
+    public MutableLiveData<MoviesModel> getTopMovies(String apiKey, String langyage, int page){
+        MutableLiveData<MoviesModel> newData = new MutableLiveData<>();
+
+        retrofitClient.getTopMovies(apiKey, langyage, page).enqueue(new Callback<MoviesModel>() {
+            @Override
+            public void onResponse(@NotNull Call<MoviesModel> call, @NotNull Response<MoviesModel> response) {
+                if (response.isSuccessful())
+                    newData.setValue(response.body());
+                Log.e("getMovies: ", response.message());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<MoviesModel> call, @NotNull Throwable t) {
+                newData.setValue(null);
+                Log.e("getMoviesonFailure: ", t.getMessage());
+            }
+        });
+
+        return newData;
+    }
+
+    public MutableLiveData<MoviesModel> getNowMovies(String apiKey, String langyage, int page){
+        MutableLiveData<MoviesModel> newData = new MutableLiveData<>();
+
+        retrofitClient.getNowMovies(apiKey, langyage, page).enqueue(new Callback<MoviesModel>() {
+            @Override
+            public void onResponse(@NotNull Call<MoviesModel> call, @NotNull Response<MoviesModel> response) {
+                if (response.isSuccessful())
+                    newData.setValue(response.body());
+                Log.e("getMovies: ", response.message());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<MoviesModel> call, @NotNull Throwable t) {
+                newData.setValue(null);
+                Log.e("getMoviesonFailure: ", t.getMessage());
+            }
+        });
+
+        return newData;
+    }
+
+    public MutableLiveData<MoviesModel> getComingMovies(String apiKey, String langyage, int page){
+        MutableLiveData<MoviesModel> newData = new MutableLiveData<>();
+
+        retrofitClient.getComingMovies(apiKey, langyage, page).enqueue(new Callback<MoviesModel>() {
+            @Override
+            public void onResponse(@NotNull Call<MoviesModel> call, @NotNull Response<MoviesModel> response) {
+                if (response.isSuccessful())
+                    newData.setValue(response.body());
+                Log.e("getMovies: ", response.message());
             }
 
             @Override

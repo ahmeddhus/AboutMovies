@@ -3,23 +3,18 @@ package com.ahmedelsayed.aboutmovies.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.databinding.ActivityMovieDetailsBinding;
-import com.ahmedelsayed.aboutmovies.models.MovieDetailsModel;
-import com.ahmedelsayed.aboutmovies.models.MoviesModel;
 import com.ahmedelsayed.aboutmovies.models.VideosModel;
-import com.ahmedelsayed.aboutmovies.view.adapters.MainMoviesAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.VideosAdapter;
 import com.ahmedelsayed.aboutmovies.viewmodels.MDetailsViewModel;
 
@@ -71,10 +66,10 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
     private void setRV(List<VideosModel.Results> videosModel){
-        videosAdapter = new VideosAdapter(videosModel, MovieDetailsActivity.this);
+        videosAdapter = new VideosAdapter(videosModel);
         rv_videos.setAdapter(videosAdapter);
-        rv_videos.setLayoutManager(
-                new LinearLayoutManager(MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        rv_videos.setLayoutManager(new LinearLayoutManager
+                        (MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 
     @Override
@@ -88,4 +83,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+
 }
+
+
+
+
+
+
+

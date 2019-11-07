@@ -22,12 +22,10 @@ import java.util.List;
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ItemViewHolder>{
 
     private List<VideosModel.Results> items;
-    private Context context;
     private static final int RECOVERY_REQUEST = 1;
 
-    public VideosAdapter(List<VideosModel.Results> items, Context context) {
+    public VideosAdapter(List<VideosModel.Results> items) {
         this.items = items;
-        this.context = context;
     }
 
     @NonNull
@@ -42,7 +40,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ItemViewHo
 
     @Override
     public void onBindViewHolder(@NonNull VideosAdapter.ItemViewHolder holder, int position) {
-        holder.bind(position, context);
+        holder.bind(position);
     }
 
     @Override
@@ -58,16 +56,14 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ItemViewHo
         YouTubePlayerView playerView;
 
         private String key = "";
-        Context context;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             playerView = itemView.findViewById(R.id.youtube_player_view);
         }
 
-        void bind(int position, Context context) {
+        void bind(int position) {
             VideosModel.Results results = items.get(position);
-            this.context = context;
             key = results.getKey();
 
             playerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {

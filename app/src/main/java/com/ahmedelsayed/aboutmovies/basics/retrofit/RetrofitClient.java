@@ -14,9 +14,24 @@ import retrofit2.http.Query;
 public interface RetrofitClient {
 
     @GET("movie/popular")
-    Call<MoviesModel> getMovies(@Query("api_key") String apiKey,
+    Call<MoviesModel> getPopularMovies(@Query("api_key") String apiKey,
                                 @Query("language") String language,
                                 @Query("page") int page);
+
+    @GET("movie/top_rated")
+    Call<MoviesModel> getTopMovies(@Query("api_key") String apiKey,
+                                @Query("language") String language,
+                                @Query("page") int page);
+
+    @GET("movie/now_playing")
+    Call<MoviesModel> getNowMovies(@Query("api_key") String apiKey,
+                                   @Query("language") String language,
+                                   @Query("page") int page);
+
+    @GET("movie/upcoming")
+    Call<MoviesModel> getComingMovies(@Query("api_key") String apiKey,
+                                   @Query("language") String language,
+                                   @Query("page") int page);
 
     @GET("movie/{movie_id}?api_key=6c20bdc9fb3e86590c16b5f77d4754c7")
     Call<MovieDetailsModel> getMDetails(@Path("movie_id") int movieId);

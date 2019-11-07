@@ -12,18 +12,40 @@ import static com.ahmedelsayed.aboutmovies.basics.retrofit.RetrofitService.API_K
 
 public class MoviesViewModel extends ViewModel {
 
-    private MutableLiveData<MoviesModel> listMutableLiveData;
+    private MutableLiveData<MoviesModel> popularLiveData;
+    private MutableLiveData<MoviesModel> topLiveData;
+    private MutableLiveData<MoviesModel> nowLiveData;
+    private MutableLiveData<MoviesModel> comingLiveData;
+
     private MoviesRepository moviesRepository;
 
     public void init(){
-        if (listMutableLiveData != null)
+        if (popularLiveData != null || topLiveData != null)
             return;
 
         moviesRepository = MoviesRepository.getInstance();
-        listMutableLiveData = moviesRepository.getMovies(API_KEY, LANGUAGE, 1);
+
+        popularLiveData = moviesRepository.getPopularMovies(API_KEY, LANGUAGE, 1);
+        topLiveData = moviesRepository.getTopMovies(API_KEY, LANGUAGE, 1);
+        nowLiveData = moviesRepository.getNowMovies(API_KEY, LANGUAGE, 1);
+        comingLiveData = moviesRepository.getComingMovies(API_KEY, LANGUAGE, 1);
     }
 
-    public LiveData<MoviesModel> getMovies(){
-        return listMutableLiveData;
+    public LiveData<MoviesModel> getPopularMovies(){
+        return popularLiveData;
     }
+
+    public LiveData<MoviesModel> getTopMovies(){
+        return topLiveData;
+    }
+
+    public LiveData<MoviesModel> getNowMovies(){
+        return nowLiveData;
+    }
+
+    public LiveData<MoviesModel> getComingMovies(){
+        return comingLiveData;
+    }
+
+
 }
