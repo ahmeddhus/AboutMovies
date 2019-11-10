@@ -2,10 +2,8 @@ package com.ahmedelsayed.aboutmovies.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.widget.ScrollView;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.basics.BaseActivity;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
+import com.ahmedelsayed.aboutmovies.view.CustomLayoutManager;
 import com.ahmedelsayed.aboutmovies.view.adapters.MainMoviesAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.MoviesAdapter;
 import com.ahmedelsayed.aboutmovies.viewmodels.MoviesViewModel;
@@ -35,6 +34,8 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
     RecyclerView rv_now;
     @BindView(R.id.rv_coming)
     RecyclerView rv_coming;
+    @BindView(R.id.s)
+    ScrollView s;
 
     MainMoviesAdapter mainMoviesAdapter;
     MoviesAdapter moviesAdapter;
@@ -65,7 +66,8 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
     private void setRVPopular(List<MoviesModel.Results> mainMoviesModels){
         mainMoviesAdapter = new MainMoviesAdapter(mainMoviesModels, this);
         rv_popular.setAdapter(mainMoviesAdapter);
-        rv_popular.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        rv_popular.setLayoutManager(new CustomLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false,  s.getWidth(), 250));
+        rv_popular.smoothScrollToPosition(2);
     }
 
     private void setRV(List<MoviesModel.Results> mainMoviesModels, RecyclerView rv){

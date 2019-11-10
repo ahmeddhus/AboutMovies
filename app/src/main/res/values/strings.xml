@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">About Movies</string>
     <string name="storyline">Storyline</string>
+    <string name="popular">Popular</string>
+    <string name="see_all">SEE ALL</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="upcoming">Upcoming</string>
 </resources>

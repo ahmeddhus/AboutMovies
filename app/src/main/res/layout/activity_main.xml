@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/colorPrimaryDark">
 
@@ -28,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Popular"
+                android:text="@string/popular"
                 android:textSize="24sp"
                 android:textColor="@color/colorAccent"
                 android:layout_marginBottom="10dp"
@@ -38,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="SEE ALL"
+                android:text="@string/see_all"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorObject"
@@ -60,7 +61,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Top Rated"
+                android:text="@string/top_rated"
                 android:textSize="18sp"
                 android:textColor="@color/colorAccent"
                 android:layout_marginBottom="10dp"
@@ -70,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="SEE ALL"
+                android:text="@string/see_all"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorObject"
@@ -92,7 +93,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Now Playing"
+                android:text="@string/now_playing"
                 android:textSize="18sp"
                 android:textColor="@color/colorAccent"
                 android:layout_marginBottom="10dp"
@@ -102,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="SEE ALL"
+                android:text="@string/see_all"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorObject"
@@ -124,7 +125,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upcoming"
+                android:text="@string/upcoming"
                 android:textSize="18sp"
                 android:textColor="@color/colorAccent"
                 android:layout_marginBottom="10dp"
@@ -134,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="SEE ALL"
+                android:text="@string/see_all"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorObject"
