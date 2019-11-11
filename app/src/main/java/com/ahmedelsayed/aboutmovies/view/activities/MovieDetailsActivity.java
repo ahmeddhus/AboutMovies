@@ -2,6 +2,7 @@ package com.ahmedelsayed.aboutmovies.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.databinding.ActivityMovieDetailsBinding;
@@ -32,6 +34,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.rv_videos)
     RecyclerView rv_videos;
+    @BindView(R.id.movie_details)
+    ImageView movie_details;
 
     MDetailsViewModel mDetailsViewModel;
     VideosAdapter videosAdapter;
@@ -52,12 +56,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private void getData( ActivityMovieDetailsBinding binding){
+    private void getData(ActivityMovieDetailsBinding binding) {
         mDetailsViewModel = ViewModelProviders.of(this).get(MDetailsViewModel.class);
 
         Intent intent = getIntent();
-        movie_id = intent.getIntExtra(MOVIE_ID,0);
-        Log.e("ID", movie_id+"");
+        movie_id = intent.getIntExtra(MOVIE_ID, 0);
+        Log.e("ID", movie_id + "");
 
         mDetailsViewModel.inti(movie_id);
         mDetailsViewModel.getMDetails().observe(this, binding::setMdetails);
@@ -65,11 +69,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
         mDetailsViewModel.getVideos().observe(this, videosModel -> setRV(videosModel.getResults()));
     }
 
-    private void setRV(List<VideosModel.Results> videosModel){
+    private void setRV(List<VideosModel.Results> videosModel) {
         videosAdapter = new VideosAdapter(videosModel);
         rv_videos.setAdapter(videosAdapter);
         rv_videos.setLayoutManager(new LinearLayoutManager
-                        (MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                (MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 
     @Override
@@ -83,8 +87,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
-
-
 }
 
 
