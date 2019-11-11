@@ -2,6 +2,7 @@ package com.ahmedelsayed.aboutmovies.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ScrollView;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -22,6 +23,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.ahmedelsayed.aboutmovies.view.activities.MovieDetailsActivity.MOVIE_ID;
+import static com.ahmedelsayed.aboutmovies.view.activities.SeeAllMovies.COMING_SOON;
+import static com.ahmedelsayed.aboutmovies.view.activities.SeeAllMovies.NOW_PLAYING;
+import static com.ahmedelsayed.aboutmovies.view.activities.SeeAllMovies.POPULAR;
+import static com.ahmedelsayed.aboutmovies.view.activities.SeeAllMovies.TOP_MOVIES;
 
 
 public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnItemClickListener{
@@ -84,5 +89,32 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
                 .putExtra(MOVIE_ID, movie_id));
     }
 
+    public void seeAll(View view) {
+
+        switch (view.getId()){
+            case R.id.allPopular:
+                startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
+                        .setAction(POPULAR));
+                break;
+
+            case R.id.allTop:
+                startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
+                        .setAction(TOP_MOVIES));
+                break;
+
+            case R.id.allNow:
+                startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
+                        .setAction(NOW_PLAYING));
+                break;
+
+            case R.id.allComing:
+                startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
+                        .setAction(COMING_SOON));
+                break;
+
+            default:
+                break;
+        }
+    }
 }
 

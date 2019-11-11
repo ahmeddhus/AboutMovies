@@ -36,15 +36,19 @@
                 android:layout_marginStart="15dp" />
 
             <TextView
+                android:id="@+id/allPopular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="@string/see_all"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                android:onClick="seeAll"
                 android:textColor="@color/colorObject"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:focusable="true" />
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -68,15 +72,19 @@
                 android:layout_marginStart="15dp" />
 
             <TextView
+                android:id="@+id/allTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="@string/see_all"
+                android:onClick="seeAll"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorObject"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:focusable="true"/>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -100,15 +108,19 @@
                 android:layout_marginStart="15dp" />
 
             <TextView
+                android:id="@+id/allNow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="@string/see_all"
+                android:onClick="seeAll"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorObject"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:focusable="true"/>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -132,15 +144,19 @@
                 android:layout_marginStart="15dp" />
 
             <TextView
+                android:id="@+id/allComing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="@string/see_all"
+                android:onClick="seeAll"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorObject"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:focusable="true"/>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
