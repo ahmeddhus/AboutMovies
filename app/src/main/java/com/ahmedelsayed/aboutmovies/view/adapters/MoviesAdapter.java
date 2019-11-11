@@ -1,13 +1,16 @@
 package com.ahmedelsayed.aboutmovies.view.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,11 +56,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ItemViewHo
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         MoviesAdapterBinding moviesAdapterBinding;
+        ImageView movies;
 
         public ItemViewHolder(@NonNull MoviesAdapterBinding itemView) {
             super(itemView.getRoot());
             moviesAdapterBinding = itemView;
             itemView.getRoot().setOnClickListener(this);
+            movies = itemView.getRoot().findViewById(R.id.movies);
         }
 
         void bind(int position) {
@@ -68,8 +73,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ItemViewHo
         @Override
         public void onClick(View v) {
             int movie_id = items.get(getAdapterPosition()).getId();
-            context.startActivity(new Intent(context, MovieDetailsActivity.class)
-                    .putExtra(MOVIE_ID, movie_id));
+            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, movies, "imageMain");
+            Intent in = new Intent(context, MovieDetailsActivity.class).putExtra(MOVIE_ID, movie_id);
+            context.startActivity(in, activityOptionsCompat.toBundle());
         }
     }
 }

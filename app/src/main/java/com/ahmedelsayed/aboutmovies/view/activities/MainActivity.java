@@ -3,8 +3,10 @@ package com.ahmedelsayed.aboutmovies.view.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -81,10 +83,11 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
     }
 
     @Override
-    public void onItemClikced(int position) {
+    public void onItemClikced(int position, ImageView imageView) {
         int movie_id = popularMoviesModels1.get(position).getId();
-        startActivity(new Intent(this, MovieDetailsActivity.class)
-                .putExtra(MOVIE_ID, movie_id));
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, "imageMain");
+        Intent in = new Intent(this, MovieDetailsActivity.class).putExtra(MOVIE_ID, movie_id);
+        startActivity(in, activityOptionsCompat.toBundle());
     }
 
     public void seeAll(View view) {

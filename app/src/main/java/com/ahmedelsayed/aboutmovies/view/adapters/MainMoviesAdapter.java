@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -47,16 +48,18 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.It
     }
 
     public interface OnItemClickListener {
-        void onItemClikced(int position);
+        void onItemClikced(int position, ImageView imageView);
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         MainMoviesAdapterBinding mainMoviesAdapterBinding;
+        ImageView main_movies;
 
         ItemViewHolder(@NonNull MainMoviesAdapterBinding itemView) {
             super(itemView.getRoot());
             mainMoviesAdapterBinding = itemView;
             itemView.getRoot().setOnClickListener(this);
+            main_movies = itemView.getRoot().findViewById(R.id.main_movies);
         }
 
         void bind(int position) {
@@ -66,7 +69,7 @@ public class MainMoviesAdapter extends RecyclerView.Adapter<MainMoviesAdapter.It
 
         @Override
         public void onClick(View v) {
-            mOnItemClickListener.onItemClikced(getAdapterPosition());
+            mOnItemClickListener.onItemClikced(getAdapterPosition(), main_movies);
         }
     }
 }
