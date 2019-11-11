@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -21,7 +22,10 @@ import com.ahmedelsayed.aboutmovies.view.adapters.MoviesAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.SeeAllAdapter;
 import com.ahmedelsayed.aboutmovies.view.customLayouts.CustomLayoutSeeAll;
 import com.ahmedelsayed.aboutmovies.viewmodels.MoviesViewModel;
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -45,7 +49,8 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
 
     SeeAllAdapter seeAllAdapter;
     MoviesViewModel moviesViewModel;
-    List<MoviesModel.Results> moviesModelsAction;
+    List<MoviesModel.Results> moviesModelsAction = new ArrayList<>();
+    int i = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,33 +63,47 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setData();
-    }
-
-    private void setData(){
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         moviesViewModel.init();
+        setData(1, false);
 
+        Glide.with(SeeAllMovies.this)
+                .load(R.drawable.loading)
+                .into(loading);
+
+        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1)) {
+                    loading.setVisibility(View.VISIBLE);
+                    i++;
+                    setData(i, true);
+                }
+            }
+        });
+    }
+
+    private void setData(int pageNum, boolean paging){
         Intent intent = SeeAllMovies.this.getIntent();
         if (intent.getAction() != null){
-
             switch (intent.getAction()){
                 case POPULAR:
                     toolbar.setTitle("Popular Movies");
-                    moviesViewModel.getPopularMovies(1).observe(this, moviesModel -> { setRV(moviesModel.getResults());
-                    moviesModelsAction = moviesModel.getResults();});
+                    moviesViewModel.getPopularMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
                     break;
                 case TOP_MOVIES:
                     toolbar.setTitle("Top Movies");
-                    moviesViewModel.getTopMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults()));
+                    moviesViewModel.getTopMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
                     break;
                 case NOW_PLAYING:
                     toolbar.setTitle("Now Playing");
-                    moviesViewModel.getNowMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults()));
+                    moviesViewModel.getNowMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
                     break;
                 case COMING_SOON:
                     toolbar.setTitle("Coming Soon");
-                    moviesViewModel.getComingMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults()));
+                    moviesViewModel.getComingMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
                     break;
                 default:
                     Toast.makeText(SeeAllMovies.this, "ERROR!", Toast.LENGTH_LONG).show();
@@ -97,10 +116,18 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
         }
     }
 
-    private void setRV(List<MoviesModel.Results> mainMoviesModels){
-        seeAllAdapter = new SeeAllAdapter(mainMoviesModels, SeeAllMovies.this);
-        rv.setAdapter(seeAllAdapter);
-        rv.setLayoutManager(new CustomLayoutSeeAll(SeeAllMovies.this, count(), GridLayoutManager.VERTICAL, false, loading));
+    private void setRV(List<MoviesModel.Results> mainMoviesModels, boolean paging){
+        moviesModelsAction.addAll(mainMoviesModels);
+
+        if(!paging) {
+            seeAllAdapter = new SeeAllAdapter(SeeAllMovies.this, moviesModelsAction, SeeAllMovies.this);
+            rv.setAdapter(seeAllAdapter);
+            rv.setLayoutManager(new CustomLayoutSeeAll(SeeAllMovies.this, count(), GridLayoutManager.VERTICAL, false, loading));
+        }
+        else{
+            loading.setVisibility(View.GONE);
+            seeAllAdapter.notifyDataSetChanged ();
+        }
     }
 
 

@@ -28,7 +28,7 @@
             <ImageView
                 android:id="@+id/seeall_movies"
                 android:layout_width="wrap_content"
-                android:layout_height="225dp"
+                android:layout_height="250dp"
                 android:scaleType="fitXY"
                 android:background="@color/colorAccent"
                 android:layout_gravity="center"

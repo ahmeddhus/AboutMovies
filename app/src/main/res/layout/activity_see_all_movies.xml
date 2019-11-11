@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -30,12 +30,14 @@
         android:id="@+id/rv_seeall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar_seeall"
         android:layout_margin="8dp"/>
 
     <ImageView
         android:id="@+id/loading"
-        android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:src="@drawable/loading"/>
-</LinearLayout>
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
