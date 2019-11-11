@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="seeall"
+            type="com.ahmedelsayed.aboutmovies.models.MoviesModel.Results" />
+    </data>
+
+
+    <LinearLayout
+        android:id="@+id/main_movieItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="8dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:cardElevation="9dp"
+            app:cardCornerRadius="12dp"
+            android:background="@drawable/main_item_shape">
+            <ImageView
+                android:id="@+id/seeall_movies"
+                android:layout_width="wrap_content"
+                android:layout_height="225dp"
+                android:scaleType="fitXY"
+                android:background="@color/colorAccent"
+                android:layout_gravity="center"
+                app:poster_path="@{seeall.poster_path}"
+                tools:ignore="ContentDescription" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/seeall_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:layout_gravity="center"
+            android:text="@{seeall.title}"
+            android:layout_margin="5dp"
+            android:textSize="14sp" />
+
+        <RatingBar
+            android:id="@+id/seeall_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:rating="@{Float.valueOf(Double.toString(seeall.vote_average))}"
+            android:theme="@style/RatingBar"
+            style="?android:attr/ratingBarStyleSmall"/>
+    </LinearLayout>
+</layout>

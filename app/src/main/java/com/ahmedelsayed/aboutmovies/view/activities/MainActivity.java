@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.basics.BaseActivity;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
-import com.ahmedelsayed.aboutmovies.view.CustomLayoutManager;
+import com.ahmedelsayed.aboutmovies.view.customLayouts.CustomLayoutManager;
 import com.ahmedelsayed.aboutmovies.view.adapters.MainMoviesAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.MoviesAdapter;
 import com.ahmedelsayed.aboutmovies.viewmodels.MoviesViewModel;
@@ -52,20 +52,19 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        getData();
+    }
 
+    private void getData(){
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         moviesViewModel.init();
-
-        moviesViewModel.getPopularMovies().observe(this, moviesModel -> {
+        moviesViewModel.getPopularMovies(1).observe(this, moviesModel -> {
             setRVPopular(moviesModel.getResults());
             popularMoviesModels1 = moviesModel.getResults();
         });
-
-        moviesViewModel.getTopMovies().observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_top));
-
-        moviesViewModel.getNowMovies().observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_now));
-
-        moviesViewModel.getComingMovies().observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_coming));
+        moviesViewModel.getTopMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_top));
+        moviesViewModel.getNowMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_now));
+        moviesViewModel.getComingMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_coming));
     }
 
     private void setRVPopular(List<MoviesModel.Results> mainMoviesModels){
@@ -84,34 +83,28 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
     @Override
     public void onItemClikced(int position) {
         int movie_id = popularMoviesModels1.get(position).getId();
-
         startActivity(new Intent(this, MovieDetailsActivity.class)
                 .putExtra(MOVIE_ID, movie_id));
     }
 
     public void seeAll(View view) {
-
         switch (view.getId()){
             case R.id.allPopular:
                 startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
                         .setAction(POPULAR));
                 break;
-
             case R.id.allTop:
                 startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
                         .setAction(TOP_MOVIES));
                 break;
-
             case R.id.allNow:
                 startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
                         .setAction(NOW_PLAYING));
                 break;
-
             case R.id.allComing:
                 startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
                         .setAction(COMING_SOON));
                 break;
-
             default:
                 break;
         }

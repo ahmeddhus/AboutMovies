@@ -24,26 +24,25 @@ public class MoviesViewModel extends ViewModel {
             return;
 
         moviesRepository = MoviesRepository.getInstance();
-
-        popularLiveData = moviesRepository.getPopularMovies(API_KEY, LANGUAGE, 1);
-        topLiveData = moviesRepository.getTopMovies(API_KEY, LANGUAGE, 1);
-        nowLiveData = moviesRepository.getNowMovies(API_KEY, LANGUAGE, 1);
-        comingLiveData = moviesRepository.getComingMovies(API_KEY, LANGUAGE, 1);
     }
 
-    public LiveData<MoviesModel> getPopularMovies(){
+    public LiveData<MoviesModel> getPopularMovies(int pageNum){
+        popularLiveData = moviesRepository.getPopularMovies(API_KEY, LANGUAGE, pageNum);
         return popularLiveData;
     }
 
-    public LiveData<MoviesModel> getTopMovies(){
+    public LiveData<MoviesModel> getTopMovies(int pageNum){
+        topLiveData = moviesRepository.getTopMovies(API_KEY, LANGUAGE, pageNum);
         return topLiveData;
     }
 
-    public LiveData<MoviesModel> getNowMovies(){
+    public LiveData<MoviesModel> getNowMovies(int pageNum){
+        nowLiveData = moviesRepository.getNowMovies(API_KEY, LANGUAGE, pageNum);
         return nowLiveData;
     }
 
-    public LiveData<MoviesModel> getComingMovies(){
+    public LiveData<MoviesModel> getComingMovies(int pageNum){
+        comingLiveData = moviesRepository.getComingMovies(API_KEY, LANGUAGE, pageNum);
         return comingLiveData;
     }
 

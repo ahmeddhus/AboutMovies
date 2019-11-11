@@ -9,7 +9,6 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".view.activities.SeeAllMovies">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_seeall"
         android:layout_width="match_parent"
@@ -32,4 +31,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"/>
+
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/loading"/>
 </LinearLayout>
