@@ -10,14 +10,15 @@
             type="com.ahmedelsayed.aboutmovies.models.PeopleModel" />
     </data>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:orientation="vertical">
 
             <com.google.android.material.appbar.AppBarLayout
@@ -27,19 +28,31 @@
                 android:fitsSystemWindows="true"
                 android:theme="@style/AppTheme.AppBarOverlay"
                 app:layout_constraintTop_toTopOf="parent">
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar_people"
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/toolbar_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    app:title=" " />
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:titleEnabled="false">
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar_people"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:layout_collapseMode="pin"
+                        app:popupTheme="@style/AppTheme.PopupOverlay"
+                        app:title=" " />
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/colorPrimaryDark">
 
                 <androidx.cardview.widget.CardView
@@ -47,52 +60,97 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="8dp"
                     android:padding="8dp"
                     app:cardBackgroundColor="@color/colorPrimary"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="9dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="170dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/people_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="@{people.name}"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="18sp"
-                            android:textStyle="" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="160dp"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical"
+                            android:padding="10dp">
 
-                        <TextView
-                            android:id="@+id/people_department"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="@{people.known_for_department}"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="18sp"
-                            android:textStyle="" />
+                            <TextView
+                                android:id="@+id/people_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="@{people.name}"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/birthday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:text="@{people.birthday}"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
+                            <TextView
+                                android:id="@+id/people_department"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:text="@{people.known_for_department}"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="18sp"
+                                android:textStyle="" />
+
+                            <TextView
+                                android:id="@+id/birthday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{people.birthday}"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView24"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:padding="8dp"
+                                android:text="@string/biography"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="24sp"
+                                android:textStyle="bold" />
+
+
+                            <ScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp">
+
+                                <TextView
+                                    android:id="@+id/people_bio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:paddingStart="20dp"
+                                    android:paddingEnd="20dp"
+                                    android:paddingBottom="20dp"
+                                    android:scrollbars="vertical"
+                                    android:text="@{people.biography}"
+                                    android:textColor="@color/colorAccent"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </ScrollView>
+                        </LinearLayout>
                     </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -104,8 +162,8 @@
                     android:background="@drawable/main_item_shape"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="9dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
                         android:id="@+id/people_pic"
@@ -115,31 +173,6 @@
                         app:profile_path="@{people.profile_path}" />
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-            <TextView
-                android:id="@+id/textView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:text="@string/biography"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/people_bio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="@{people.biography}"
-                android:textColor="@color/colorAccent"
-                android:textSize="14sp"
-                android:textStyle="bold" />
         </LinearLayout>
-    </ScrollView>
+    </RelativeLayout>
 </layout>

@@ -53,7 +53,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ActivityMovieDetailsBinding binding =
                 DataBindingUtil.setContentView(MovieDetailsActivity.this, R.layout.activity_movie_details);
         init();
