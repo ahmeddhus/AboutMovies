@@ -73,9 +73,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ItemViewHo
         @Override
         public void onClick(View v) {
             int movie_id = items.get(getAdapterPosition()).getId();
-            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, movies, "imageMain");
-            Intent in = new Intent(context, MovieDetailsActivity.class).putExtra(MOVIE_ID, movie_id);
-            context.startActivity(in, activityOptionsCompat.toBundle());
+            context.startActivity(new Intent(context, MovieDetailsActivity.class).putExtra(MOVIE_ID, movie_id));
         }
     }
 }

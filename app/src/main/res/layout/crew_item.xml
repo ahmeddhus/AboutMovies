@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="crew"
+            type="com.ahmedelsayed.aboutmovies.models.CreditsModel.Crew" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/movieItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:cardElevation="9dp"
+            app:cardCornerRadius="12dp"
+            android:background="@drawable/main_item_shape">
+            <ImageView
+                android:id="@+id/crew_img"
+                android:background="@color/colorAccent"
+                android:layout_width="90dp"
+                android:layout_height="130dp"
+                android:scaleType="fitXY"
+                app:profile_path="@{crew.profile_path}"/>
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/crew_name"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:text="@{crew.name}"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/crew_job"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorObject"
+            android:text="@{crew.job}"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="12sp" />
+    </LinearLayout>
+</layout>

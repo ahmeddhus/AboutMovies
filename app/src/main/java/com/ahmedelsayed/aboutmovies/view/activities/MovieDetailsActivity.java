@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +17,10 @@ import android.widget.ImageView;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.databinding.ActivityMovieDetailsBinding;
+import com.ahmedelsayed.aboutmovies.models.CreditsModel;
 import com.ahmedelsayed.aboutmovies.models.VideosModel;
+import com.ahmedelsayed.aboutmovies.view.adapters.CastAdapter;
+import com.ahmedelsayed.aboutmovies.view.adapters.CrewAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.VideosAdapter;
 import com.ahmedelsayed.aboutmovies.viewmodels.MDetailsViewModel;
 
@@ -32,13 +36,19 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar_details)
     Toolbar toolbar;
-    @BindView(R.id.rv_videos)
-    RecyclerView rv_videos;
     @BindView(R.id.movie_details)
     ImageView movie_details;
+    @BindView(R.id.rv_videos)
+    RecyclerView rv_videos;
+    @BindView(R.id.rv_cast)
+    RecyclerView rv_cast;
+    @BindView(R.id.rv_crew)
+    RecyclerView rv_crew;
 
     MDetailsViewModel mDetailsViewModel;
     VideosAdapter videosAdapter;
+    CastAdapter castAdapter;
+    CrewAdapter crewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +76,31 @@ public class MovieDetailsActivity extends AppCompatActivity {
         mDetailsViewModel.inti(movie_id);
         mDetailsViewModel.getMDetails().observe(this, binding::setMdetails);
 
-        mDetailsViewModel.getVideos().observe(this, videosModel -> setRV(videosModel.getResults()));
+        mDetailsViewModel.getVideos().observe(this, videosModel -> setYoutubeRV(videosModel.getResults()));
+        mDetailsViewModel.getCredits().observe(this, creditsModel -> {
+            setCastRV(creditsModel.getCast());
+            setCrewRV(creditsModel.getCrew());
+        });
     }
 
-    private void setRV(List<VideosModel.Results> videosModel) {
+    private void setYoutubeRV(List<VideosModel.Results> videosModel) {
         videosAdapter = new VideosAdapter(videosModel);
         rv_videos.setAdapter(videosAdapter);
         rv_videos.setLayoutManager(new LinearLayoutManager
+                (MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    private void setCastRV(List<CreditsModel.Cast> casts){
+        castAdapter = new CastAdapter(casts, MovieDetailsActivity.this);
+        rv_cast.setAdapter(castAdapter);
+        rv_cast.setLayoutManager(new LinearLayoutManager
+                (MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
+    }
+
+    private void setCrewRV(List<CreditsModel.Crew> crews){
+        crewAdapter = new CrewAdapter(crews, MovieDetailsActivity.this);
+        rv_crew.setAdapter(crewAdapter);
+        rv_crew.setLayoutManager(new LinearLayoutManager
                 (MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 

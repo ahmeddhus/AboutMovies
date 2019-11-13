@@ -85,9 +85,7 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
     @Override
     public void onItemClikced(int position, ImageView imageView) {
         int movie_id = popularMoviesModels1.get(position).getId();
-        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView, "imageMain");
-        Intent in = new Intent(this, MovieDetailsActivity.class).putExtra(MOVIE_ID, movie_id);
-        startActivity(in, activityOptionsCompat.toBundle());
+        startActivity(new Intent(this, MovieDetailsActivity.class).putExtra(MOVIE_ID, movie_id));
     }
 
     public void seeAll(View view) {

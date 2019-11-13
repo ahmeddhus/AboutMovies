@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.ahmedelsayed.aboutmovies.basics.retrofit.RetrofitClient;
 import com.ahmedelsayed.aboutmovies.basics.retrofit.RetrofitService;
+import com.ahmedelsayed.aboutmovies.models.CreditsModel;
 import com.ahmedelsayed.aboutmovies.models.MovieDetailsModel;
 import com.ahmedelsayed.aboutmovies.models.VideosModel;
 
@@ -65,6 +66,27 @@ public class MDetailsRepository {
                 Log.e("getMovieonFailure: ", t.getMessage());
             }
         });
+        return newData;
+    }
+
+    public MutableLiveData<CreditsModel> getCredits(int movieId, String apiKey){
+        MutableLiveData<CreditsModel> newData = new MutableLiveData<>();
+
+        retrofitClient.getCredits(movieId, apiKey).enqueue(new Callback<CreditsModel>() {
+            @Override
+            public void onResponse(Call<CreditsModel> call, Response<CreditsModel> response) {
+                if (response.isSuccessful())
+                    newData.setValue(response.body());
+                Log.e("getMovieonFailure: ", response.message());
+            }
+
+            @Override
+            public void onFailure(Call<CreditsModel> call, Throwable t) {
+                newData.setValue(null);
+                Log.e("getMovieonFailure: ", t.getMessage());
+            }
+        });
+
         return newData;
     }
 }

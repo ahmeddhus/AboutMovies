@@ -6,4 +6,7 @@
     <string name="top_rated">Top Rated</string>
     <string name="now_playing">Now Playing</string>
     <string name="upcoming">Upcoming</string>
+    <string name="cast">Cast</string>
+    <string name="crew">Crew</string>
+    <string name="biography">Biography</string>
 </resources>

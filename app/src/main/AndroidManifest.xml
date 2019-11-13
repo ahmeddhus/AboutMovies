@@ -16,10 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-
+        <activity android:name=".view.activities.PeopleActivity"></activity>
         <activity android:name=".view.activities.SeeAllMovies" />
         <activity android:name=".view.activities.MovieDetailsActivity" />
-
         <activity android:name=".view.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

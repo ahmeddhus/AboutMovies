@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ahmedelsayed.aboutmovies.models.CreditsModel;
 import com.ahmedelsayed.aboutmovies.models.MovieDetailsModel;
 import com.ahmedelsayed.aboutmovies.models.VideosModel;
 import com.ahmedelsayed.aboutmovies.repositories.MDetailsRepository;
@@ -15,6 +16,8 @@ public class MDetailsViewModel extends ViewModel {
 
     private MutableLiveData<MovieDetailsModel> detailsModelMutableLiveData;
     private MutableLiveData<VideosModel> viewModelMutableLiveData;
+    private MutableLiveData<CreditsModel> creditsModelMutableLiveData;
+
 
     public void inti(int movieId){
         if(detailsModelMutableLiveData != null || viewModelMutableLiveData != null)
@@ -23,6 +26,7 @@ public class MDetailsViewModel extends ViewModel {
         MDetailsRepository mDetailsRepository = MDetailsRepository.getInstance();
         detailsModelMutableLiveData = mDetailsRepository.getMDetails(movieId, API_KEY, LANGUAGE);
         viewModelMutableLiveData = mDetailsRepository.getVideos(movieId, API_KEY);
+        creditsModelMutableLiveData = mDetailsRepository.getCredits(movieId, API_KEY);
     }
 
     public LiveData<MovieDetailsModel> getMDetails(){
@@ -32,4 +36,9 @@ public class MDetailsViewModel extends ViewModel {
     public LiveData<VideosModel> getVideos(){
         return viewModelMutableLiveData;
     }
+
+    public LiveData<CreditsModel> getCredits(){
+        return creditsModelMutableLiveData;
+    }
+
 }

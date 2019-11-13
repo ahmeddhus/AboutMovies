@@ -1,6 +1,11 @@
 package com.ahmedelsayed.aboutmovies.models;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
 import com.google.gson.annotations.SerializedName;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -40,7 +45,14 @@ public class PeopleModel {
     }
 
     public String getProfile_path() {
-        return profile_path;
+        return "https://image.tmdb.org/t/p/w500"+profile_path;
+    }
+
+    @BindingAdapter({"bind:profile_path"})
+    public static void loadImage(ImageView view, String profile_path) {
+        Picasso.get()
+                .load(profile_path)
+                .into(view);
     }
 
     public String getPlace_of_birth() {
