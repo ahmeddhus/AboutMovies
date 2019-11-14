@@ -15,11 +15,10 @@ import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.databinding.CastItemBinding;
 import com.ahmedelsayed.aboutmovies.models.CreditsModel;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
+import com.ahmedelsayed.aboutmovies.utils.Constants;
 import com.ahmedelsayed.aboutmovies.view.activities.PeopleActivity;
 
 import java.util.List;
-
-import static com.ahmedelsayed.aboutmovies.view.activities.PeopleActivity.PEOPLE_ID;
 
 public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ItemViewHolder> {
 
@@ -70,7 +69,7 @@ public class CastAdapter extends RecyclerView.Adapter<CastAdapter.ItemViewHolder
         @Override
         public void onClick(View v) {
             int people_id = items.get(getAdapterPosition()).getId();
-            context.startActivity(new Intent(context, PeopleActivity.class).putExtra(PEOPLE_ID, people_id));
+            context.startActivity(new Intent(context, PeopleActivity.class).putExtra(Constants.PEOPLE_ID, people_id));
         }
     }
 }

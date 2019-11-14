@@ -8,9 +8,9 @@ import com.ahmedelsayed.aboutmovies.models.CreditsModel;
 import com.ahmedelsayed.aboutmovies.models.MovieDetailsModel;
 import com.ahmedelsayed.aboutmovies.models.VideosModel;
 import com.ahmedelsayed.aboutmovies.repositories.MDetailsRepository;
+import com.ahmedelsayed.aboutmovies.utils.Constants;
 
 import static android.provider.MediaStore.Video.VideoColumns.LANGUAGE;
-import static com.ahmedelsayed.aboutmovies.basics.retrofit.RetrofitService.API_KEY;
 
 public class MDetailsViewModel extends ViewModel {
 
@@ -24,9 +24,9 @@ public class MDetailsViewModel extends ViewModel {
             return;
 
         MDetailsRepository mDetailsRepository = MDetailsRepository.getInstance();
-        detailsModelMutableLiveData = mDetailsRepository.getMDetails(movieId, API_KEY, LANGUAGE);
-        viewModelMutableLiveData = mDetailsRepository.getVideos(movieId, API_KEY);
-        creditsModelMutableLiveData = mDetailsRepository.getCredits(movieId, API_KEY);
+        detailsModelMutableLiveData = mDetailsRepository.getMDetails(movieId, Constants.API_KEY, LANGUAGE);
+        viewModelMutableLiveData = mDetailsRepository.getVideos(movieId, Constants.API_KEY);
+        creditsModelMutableLiveData = mDetailsRepository.getCredits(movieId, Constants.API_KEY);
     }
 
     public LiveData<MovieDetailsModel> getMDetails(){

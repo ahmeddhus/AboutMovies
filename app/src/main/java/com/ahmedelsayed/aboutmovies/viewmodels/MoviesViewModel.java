@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
 import com.ahmedelsayed.aboutmovies.repositories.MoviesRepository;
+import com.ahmedelsayed.aboutmovies.utils.Constants;
 
 import static android.provider.MediaStore.Video.VideoColumns.LANGUAGE;
-import static com.ahmedelsayed.aboutmovies.basics.retrofit.RetrofitService.API_KEY;
 
 public class MoviesViewModel extends ViewModel {
 
@@ -27,22 +27,22 @@ public class MoviesViewModel extends ViewModel {
     }
 
     public LiveData<MoviesModel> getPopularMovies(int pageNum){
-        popularLiveData = moviesRepository.getPopularMovies(API_KEY, LANGUAGE, pageNum);
+        popularLiveData = moviesRepository.getPopularMovies(Constants.API_KEY, LANGUAGE, pageNum);
         return popularLiveData;
     }
 
     public LiveData<MoviesModel> getTopMovies(int pageNum){
-        topLiveData = moviesRepository.getTopMovies(API_KEY, LANGUAGE, pageNum);
+        topLiveData = moviesRepository.getTopMovies(Constants.API_KEY, LANGUAGE, pageNum);
         return topLiveData;
     }
 
     public LiveData<MoviesModel> getNowMovies(int pageNum){
-        nowLiveData = moviesRepository.getNowMovies(API_KEY, LANGUAGE, pageNum);
+        nowLiveData = moviesRepository.getNowMovies(Constants.API_KEY, LANGUAGE, pageNum);
         return nowLiveData;
     }
 
     public LiveData<MoviesModel> getComingMovies(int pageNum){
-        comingLiveData = moviesRepository.getComingMovies(API_KEY, LANGUAGE, pageNum);
+        comingLiveData = moviesRepository.getComingMovies(Constants.API_KEY, LANGUAGE, pageNum);
         return comingLiveData;
     }
 

@@ -6,14 +6,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
-import androidx.core.app.ActivityOptionsCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmedelsayed.aboutmovies.R;
-import com.ahmedelsayed.aboutmovies.basics.BaseActivity;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
+import com.ahmedelsayed.aboutmovies.utils.Constants;
 import com.ahmedelsayed.aboutmovies.view.customLayouts.CustomLayoutManager;
 import com.ahmedelsayed.aboutmovies.view.adapters.MainMoviesAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.MoviesAdapter;
@@ -24,14 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.ahmedelsayed.aboutmovies.view.activities.MovieDetailsActivity.MOVIE_ID;
-import static com.ahmedelsayed.aboutmovies.view.activities.SeeAllMovies.COMING_SOON;
-import static com.ahmedelsayed.aboutmovies.view.activities.SeeAllMovies.NOW_PLAYING;
-import static com.ahmedelsayed.aboutmovies.view.activities.SeeAllMovies.POPULAR;
-import static com.ahmedelsayed.aboutmovies.view.activities.SeeAllMovies.TOP_MOVIES;
-
-
-public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements MainMoviesAdapter.OnItemClickListener{
 
     @BindView(R.id.rv_popular)
     RecyclerView rv_popular;
@@ -55,6 +48,7 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         getData();
+
     }
 
     private void getData(){
@@ -85,26 +79,26 @@ public class MainActivity extends BaseActivity implements MainMoviesAdapter.OnIt
     @Override
     public void onItemClikced(int position, ImageView imageView) {
         int movie_id = popularMoviesModels1.get(position).getId();
-        startActivity(new Intent(this, MovieDetailsActivity.class).putExtra(MOVIE_ID, movie_id));
+        startActivity(new Intent(this, MovieDetailsActivity.class).putExtra(Constants.MOVIE_ID, movie_id));
     }
 
     public void seeAll(View view) {
         switch (view.getId()){
             case R.id.allPopular:
                 startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
-                        .setAction(POPULAR));
+                        .setAction(Constants.POPULAR));
                 break;
             case R.id.allTop:
                 startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
-                        .setAction(TOP_MOVIES));
+                        .setAction(Constants.TOP_MOVIES));
                 break;
             case R.id.allNow:
                 startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
-                        .setAction(NOW_PLAYING));
+                        .setAction(Constants.NOW_PLAYING));
                 break;
             case R.id.allComing:
                 startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
-                        .setAction(COMING_SOON));
+                        .setAction(Constants.COMING_SOON));
                 break;
             default:
                 break;

@@ -19,6 +19,7 @@ import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.databinding.ActivityMovieDetailsBinding;
 import com.ahmedelsayed.aboutmovies.models.CreditsModel;
 import com.ahmedelsayed.aboutmovies.models.VideosModel;
+import com.ahmedelsayed.aboutmovies.utils.Constants;
 import com.ahmedelsayed.aboutmovies.view.adapters.CastAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.CrewAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.VideosAdapter;
@@ -31,7 +32,6 @@ import butterknife.ButterKnife;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
-    public static final String MOVIE_ID = "movie_id";
     private int movie_id = 0;
 
     @BindView(R.id.toolbar_details)
@@ -69,7 +69,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         mDetailsViewModel = ViewModelProviders.of(this).get(MDetailsViewModel.class);
 
         Intent intent = getIntent();
-        movie_id = intent.getIntExtra(MOVIE_ID, 0);
+        movie_id = intent.getIntExtra(Constants.MOVIE_ID, 0);
         Log.e("ID", movie_id + "");
 
         mDetailsViewModel.inti(movie_id);

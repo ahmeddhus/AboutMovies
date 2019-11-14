@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
+import com.ahmedelsayed.aboutmovies.utils.Constants;
 import com.ahmedelsayed.aboutmovies.view.adapters.MainMoviesAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.MoviesAdapter;
 import com.ahmedelsayed.aboutmovies.view.adapters.SeeAllAdapter;
@@ -31,14 +32,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.ahmedelsayed.aboutmovies.view.activities.MovieDetailsActivity.MOVIE_ID;
 
 public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnItemClickListener{
-
-    public static final String POPULAR = "popular";
-    public static final String TOP_MOVIES = "top movies";
-    public static final String NOW_PLAYING = "now playing";
-    public static final String COMING_SOON = "coming soon";
 
     @BindView(R.id.toolbar_seeall)
     Toolbar toolbar;
@@ -89,19 +84,19 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
         Intent intent = SeeAllMovies.this.getIntent();
         if (intent.getAction() != null){
             switch (intent.getAction()){
-                case POPULAR:
+                case Constants.POPULAR:
                     toolbar.setTitle("Popular Movies");
                     moviesViewModel.getPopularMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
                     break;
-                case TOP_MOVIES:
+                case Constants.TOP_MOVIES:
                     toolbar.setTitle("Top Movies");
                     moviesViewModel.getTopMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
                     break;
-                case NOW_PLAYING:
+                case Constants.NOW_PLAYING:
                     toolbar.setTitle("Now Playing");
                     moviesViewModel.getNowMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
                     break;
-                case COMING_SOON:
+                case Constants.COMING_SOON:
                     toolbar.setTitle("Coming Soon");
                     moviesViewModel.getComingMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
                     break;
@@ -153,6 +148,6 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
     @Override
     public void onItemClikced(int position) {
         int movie_id = moviesModelsAction.get(position).getId();
-        startActivity(new Intent(this, MovieDetailsActivity.class).putExtra(MOVIE_ID, movie_id));
+        startActivity(new Intent(this, MovieDetailsActivity.class).putExtra(Constants.MOVIE_ID, movie_id));
     }
 }

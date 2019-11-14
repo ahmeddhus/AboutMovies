@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.ahmedelsayed.aboutmovies.models.PeopleModel;
 import com.ahmedelsayed.aboutmovies.repositories.PeopleRepository;
-
-import static com.ahmedelsayed.aboutmovies.basics.retrofit.RetrofitService.API_KEY;
+import com.ahmedelsayed.aboutmovies.utils.Constants;
 
 public class PeopleViewModel extends ViewModel {
 
@@ -22,7 +21,7 @@ public class PeopleViewModel extends ViewModel {
     }
 
     public LiveData<PeopleModel> getPeople(int personId){
-        peopleModelMutableLiveData = peopleRepository.getPeople(personId, API_KEY);
+        peopleModelMutableLiveData = peopleRepository.getPeople(personId, Constants.API_KEY);
         return peopleModelMutableLiveData;
     }
 }

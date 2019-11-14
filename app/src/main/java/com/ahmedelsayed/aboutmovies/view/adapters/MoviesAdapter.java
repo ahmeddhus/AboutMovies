@@ -17,11 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.databinding.MoviesAdapterBinding;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
+import com.ahmedelsayed.aboutmovies.utils.Constants;
 import com.ahmedelsayed.aboutmovies.view.activities.MovieDetailsActivity;
 
 import java.util.List;
-
-import static com.ahmedelsayed.aboutmovies.view.activities.MovieDetailsActivity.MOVIE_ID;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ItemViewHolder>{
 
@@ -73,7 +72,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ItemViewHo
         @Override
         public void onClick(View v) {
             int movie_id = items.get(getAdapterPosition()).getId();
-            context.startActivity(new Intent(context, MovieDetailsActivity.class).putExtra(MOVIE_ID, movie_id));
+            context.startActivity(new Intent(context, MovieDetailsActivity.class).putExtra(Constants.MOVIE_ID, movie_id));
         }
     }
 }

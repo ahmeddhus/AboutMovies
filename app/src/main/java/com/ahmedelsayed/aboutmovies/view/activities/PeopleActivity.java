@@ -14,6 +14,7 @@ import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.databinding.ActivityMovieDetailsBinding;
 import com.ahmedelsayed.aboutmovies.databinding.ActivityPeopleBinding;
 import com.ahmedelsayed.aboutmovies.models.PeopleModel;
+import com.ahmedelsayed.aboutmovies.utils.Constants;
 import com.ahmedelsayed.aboutmovies.viewmodels.MDetailsViewModel;
 import com.ahmedelsayed.aboutmovies.viewmodels.PeopleViewModel;
 
@@ -22,7 +23,6 @@ import butterknife.ButterKnife;
 
 public class PeopleActivity extends AppCompatActivity {
 
-    public static final String PEOPLE_ID = "people_id";
     private int people_id = 0;
 
     @BindView(R.id.toolbar_people)
@@ -50,7 +50,7 @@ public class PeopleActivity extends AppCompatActivity {
         peopleViewModel = ViewModelProviders.of(this).get(PeopleViewModel.class);
 
         Intent intent = getIntent();
-        people_id = intent.getIntExtra(PEOPLE_ID, 0);
+        people_id = intent.getIntExtra(Constants.PEOPLE_ID, 0);
         Log.e("ID", people_id + "");
 
         peopleViewModel.init();

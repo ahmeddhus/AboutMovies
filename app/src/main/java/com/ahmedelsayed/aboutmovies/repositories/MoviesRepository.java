@@ -4,8 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.ahmedelsayed.aboutmovies.basics.retrofit.RetrofitClient;
-import com.ahmedelsayed.aboutmovies.basics.retrofit.RetrofitService;
+import com.ahmedelsayed.aboutmovies.data.retrofit.RetrofitClient;
+import com.ahmedelsayed.aboutmovies.data.retrofit.RetrofitService;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
 
 import org.jetbrains.annotations.NotNull;
