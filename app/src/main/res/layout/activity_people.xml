@@ -52,7 +52,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
+                android:layout_margin="8dp"
+                android:padding="8dp"
                 android:background="@color/colorPrimaryDark">
 
                 <androidx.cardview.widget.CardView
@@ -63,8 +64,8 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="8dp"
-                    android:padding="8dp"
+                    android:layout_marginBottom="40dp"
+                    android:padding="16dp"
                     app:cardBackgroundColor="@color/colorPrimary"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="9dp"
@@ -73,6 +74,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -116,6 +118,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -133,17 +136,17 @@
                             <ScrollView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="16dp">
+                                app:cardCornerRadius="12dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginBottom="50dp">
 
                                 <TextView
                                     android:id="@+id/people_bio"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:paddingStart="20dp"
-                                    android:paddingEnd="20dp"
-                                    android:paddingBottom="20dp"
-                                    android:scrollbars="vertical"
                                     android:text="@{people.biography}"
                                     android:textColor="@color/colorAccent"
                                     android:textSize="14sp"
