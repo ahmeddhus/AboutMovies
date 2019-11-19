@@ -1,11 +1,16 @@
 package com.ahmedelsayed.aboutmovies.view.activities;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.SearchEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,8 +28,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements MainMoviesAdapter.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements MainMoviesAdapter.OnItemClickListener {
 
     @BindView(R.id.rv_popular)
     RecyclerView rv_popular;
@@ -35,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
     @BindView(R.id.rv_coming)
     RecyclerView rv_coming;
     @BindView(R.id.s)
-    ScrollView s;
+    LinearLayout linearLayout;
 
     MainMoviesAdapter mainMoviesAdapter;
     MoviesAdapter moviesAdapter;
@@ -48,10 +54,9 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         getData();
-
     }
 
-    private void getData(){
+    private void getData() {
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         moviesViewModel.init();
         moviesViewModel.getPopularMovies(1).observe(this, moviesModel -> {
@@ -63,27 +68,23 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
         moviesViewModel.getComingMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_coming));
     }
 
-    private void setRVPopular(List<MoviesModel.Results> mainMoviesModels){
+    private void setRVPopular(List<MoviesModel.Results> mainMoviesModels) {
         mainMoviesAdapter = new MainMoviesAdapter(mainMoviesModels, this);
         rv_popular.setAdapter(mainMoviesAdapter);
-        rv_popular.setLayoutManager(new CustomLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false,  s.getWidth(), 250));
+        rv_popular.setLayoutManager(new CustomLayoutManager(MainActivity.this,
+                LinearLayoutManager.HORIZONTAL, false, linearLayout.getWidth(),
+                250));
         rv_popular.smoothScrollToPosition(2);
     }
 
-    private void setRV(List<MoviesModel.Results> mainMoviesModels, RecyclerView rv){
+    private void setRV(List<MoviesModel.Results> mainMoviesModels, RecyclerView rv) {
         moviesAdapter = new MoviesAdapter(mainMoviesModels, MainActivity.this);
         rv.setAdapter(moviesAdapter);
         rv.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 
-    @Override
-    public void onItemClikced(int position, ImageView imageView) {
-        int movie_id = popularMoviesModels1.get(position).getId();
-        startActivity(new Intent(this, MovieDetailsActivity.class).putExtra(Constants.MOVIE_ID, movie_id));
-    }
-
     public void seeAll(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.allPopular:
                 startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
                         .setAction(Constants.POPULAR));
@@ -103,6 +104,26 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onItemClikced(int position, ImageView imageView) {
+        int movie_id = popularMoviesModels1.get(position).getId();
+        startActivity(new Intent(this, MovieDetailsActivity.class).
+                putExtra(Constants.MOVIE_ID, movie_id));
+    }
+
+//    @Override
+//    public boolean onSearchRequested() {
+//        Bundle appData = new Bundle();
+//        appData.putBoolean(SearchableActivity.JARGON, true);
+//        startSearch(null, false, appData, false);
+//        return true;
+//    }
+
+    @OnClick(R.id.search_main)
+    public void search() {
+        onSearchRequested();
     }
 }
 

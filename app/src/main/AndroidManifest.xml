@@ -16,16 +16,32 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".view.activities.PeopleActivity"></activity>
-        <activity android:name=".view.activities.SeeAllMovies" />
-        <activity android:name=".view.activities.MovieDetailsActivity" />
+
         <activity android:name=".view.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-    </application>
 
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".view.activities.SearchableActivity" />
+        </activity>
+
+        <activity
+            android:name=".view.activities.SearchableActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <activity android:name=".view.activities.PeopleActivity" />
+        <activity android:name=".view.activities.SeeAllMovies" />
+        <activity android:name=".view.activities.MovieDetailsActivity" />
+
+    </application>
 </manifest>

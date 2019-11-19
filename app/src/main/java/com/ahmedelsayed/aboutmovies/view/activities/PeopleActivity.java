@@ -3,7 +3,6 @@ package com.ahmedelsayed.aboutmovies.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -11,11 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.ahmedelsayed.aboutmovies.R;
-import com.ahmedelsayed.aboutmovies.databinding.ActivityMovieDetailsBinding;
 import com.ahmedelsayed.aboutmovies.databinding.ActivityPeopleBinding;
-import com.ahmedelsayed.aboutmovies.models.PeopleModel;
 import com.ahmedelsayed.aboutmovies.utils.Constants;
-import com.ahmedelsayed.aboutmovies.viewmodels.MDetailsViewModel;
 import com.ahmedelsayed.aboutmovies.viewmodels.PeopleViewModel;
 
 import butterknife.BindView;

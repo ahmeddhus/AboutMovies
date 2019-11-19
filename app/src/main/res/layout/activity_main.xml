@@ -1,169 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/s"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/s"
     android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
     tools:context=".view.activities.MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/search_main"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/colorPrimaryDark">
+        android:layout_gravity="end"
+        android:layout_margin="8dp"
+        android:background="@drawable/main_item_shape"
+        android:src="@drawable/ic_search_black_24dp" />
 
-        <ImageView
-            android:id="@+id/search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_search_black_24dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/popular"
-                android:textSize="24sp"
-                android:textColor="@color/colorAccent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="15dp" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/allPopular"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/popular"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/allPopular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="seeAll"
+                    android:text="@string/see_all"
+                    android:textColor="@color/colorObject"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_popular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/see_all"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:onClick="seeAll"
-                android:textColor="@color/colorObject"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"
-                android:clickable="true"
-                android:focusable="true" />
-        </RelativeLayout>
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_popular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/top_rated"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
 
+                <TextView
+                    android:id="@+id/allTop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="seeAll"
+                    android:text="@string/see_all"
+                    android:textColor="@color/colorObject"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_top"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/top_rated"
-                android:textSize="18sp"
-                android:textColor="@color/colorAccent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="15dp" />
+                android:layout_marginBottom="20dp" />
 
-            <TextView
-                android:id="@+id/allTop"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/see_all"
-                android:onClick="seeAll"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorObject"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"
-                android:clickable="true"
-                android:focusable="true"/>
-        </RelativeLayout>
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/now_playing"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
 
-        <RelativeLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/allNow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="seeAll"
+                    android:text="@string/see_all"
+                    android:textColor="@color/colorObject"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_now"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/now_playing"
-                android:textSize="18sp"
-                android:textColor="@color/colorAccent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="15dp" />
+                android:layout_marginBottom="20dp" />
 
-            <TextView
-                android:id="@+id/allNow"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/see_all"
-                android:onClick="seeAll"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorObject"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"
-                android:clickable="true"
-                android:focusable="true"/>
-        </RelativeLayout>
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_now"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/upcoming"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
 
-        <RelativeLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/allComing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="seeAll"
+                    android:text="@string/see_all"
+                    android:textColor="@color/colorObject"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_coming"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/upcoming"
-                android:textSize="18sp"
-                android:textColor="@color/colorAccent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="15dp" />
+                android:layout_marginBottom="20dp" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/allComing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/see_all"
-                android:onClick="seeAll"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorObject"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"
-                android:clickable="true"
-                android:focusable="true"/>
-        </RelativeLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_coming"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"/>
-
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
