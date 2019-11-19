@@ -1,16 +1,11 @@
 package com.ahmedelsayed.aboutmovies.view.activities;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.SearchEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -111,19 +106,6 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
         int movie_id = popularMoviesModels1.get(position).getId();
         startActivity(new Intent(this, MovieDetailsActivity.class).
                 putExtra(Constants.MOVIE_ID, movie_id));
-    }
-
-//    @Override
-//    public boolean onSearchRequested() {
-//        Bundle appData = new Bundle();
-//        appData.putBoolean(SearchableActivity.JARGON, true);
-//        startSearch(null, false, appData, false);
-//        return true;
-//    }
-
-    @OnClick(R.id.search_main)
-    public void search() {
-        onSearchRequested();
     }
 }
 

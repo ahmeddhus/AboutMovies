@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/s"
     android:layout_width="match_parent"
@@ -14,10 +15,31 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_margin="8dp"
-        android:clickable="true"
         android:background="@drawable/main_item_shape"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/ic_search_black_24dp"
-        android:focusable="true" />
+        android:visibility="gone" />
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fitsSystemWindows="true"
+        android:background="@drawable/appbar_shape"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/colorAccent"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
