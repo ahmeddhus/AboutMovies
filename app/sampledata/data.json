@@ -1,0 +1,120 @@
+{
+  "movies": [
+    {
+      "adult": false,
+      "backdrop_path": "/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
+      "belongs_to_collection": null,
+      "budget": 55000000,
+      "genres": [
+        {
+          "id": 80,
+          "name": "Crime"
+        },
+        {
+          "id": 53,
+          "name": "Thriller"
+        },
+        {
+          "id": 18,
+          "name": "Drama"
+        }
+      ],
+      "homepage": "http://www.jokermovie.net/",
+      "id": 475557,
+      "imdb_id": "tt7286456",
+      "original_language": "en",
+      "original_title": "Joker",
+      "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+      "popularity": 384.312,
+      "poster_path": "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+      "production_companies": [
+        {
+          "id": 9993,
+          "logo_path": "/2Tc1P3Ac8M479naPp1kYT3izLS5.png",
+          "name": "DC Entertainment",
+          "origin_country": "US"
+        },
+        {
+          "id": 174,
+          "logo_path": "/ky0xOc5OrhzkZ1N6KyUxacfQsCk.png",
+          "name": "Warner Bros. Pictures",
+          "origin_country": "US"
+        },
+        {
+          "id": 429,
+          "logo_path": "/2Tc1P3Ac8M479naPp1kYT3izLS5.png",
+          "name": "DC Comics",
+          "origin_country": "US"
+        },
+        {
+          "id": 83036,
+          "logo_path": null,
+          "name": "Joint Effort",
+          "origin_country": "US"
+        },
+        {
+          "id": 79,
+          "logo_path": "/tpFpsqbleCzEE2p5EgvUq6ozfCA.png",
+          "name": "Village Roadshow Pictures",
+          "origin_country": "US"
+        },
+        {
+          "id": 13240,
+          "logo_path": "/aTc07YaNHo8WNgkQSnvLmG6w4nW.png",
+          "name": "Bron Studios",
+          "origin_country": "CA"
+        }
+      ],
+      "production_countries": [
+        {
+          "iso_3166_1": "US",
+          "name": "United States of America"
+        }
+      ],
+      "release_date": "2019-10-02",
+      "revenue": 1016599593,
+      "runtime": 122,
+      "spoken_languages": [
+        {
+          "iso_639_1": "en",
+          "name": "English"
+        }
+      ],
+      "status": "Released",
+      "tagline": "Put on a happy face.",
+      "title": "Joker",
+      "video": false,
+      "vote_average": 8.4,
+      "vote_count": 5644
+    }
+  ],
+  "people": [
+    {
+      "birthday": "1974-10-28",
+      "known_for_department": "Acting",
+      "deathday": null,
+      "id": 73421,
+      "name": "Joaquin Phoenix",
+      "also_known_as": [
+        "Leaf Phoenix",
+        "Joaquin Rafael Bottom",
+        "華堅·馮力士",
+        "Хоакин Феникс",
+        "วาคีน ฟินิกซ์",
+        "خواكين فينيكس",
+        "호아킨 피닉스",
+        "ホアキン・フェニックス",
+        "Хоакін Фенікс",
+        "Χοακίν Φίνιξ"
+      ],
+      "gender": 2,
+      "biography": "American film actor Joaquin Rafael Phoenix, born Joaquin Rafael Bottom has ventured behind the camera, directing music videos as well as producing movies and television shows. Phoenix recorded an album, the soundtrack to “Walk the Line”. He is also known for his work as a social activist, particularly as an advocate for animal rights. Phoenix's first acting jobs were guest appearances on two television shows with his brother River in Seven Brides for Seven Brothers (1982) and Backwards: The Riddle Of Dyslexia (1984). He made his big-screen debut in Space Camp (1986), playing the role of Max, after starring in an Alfred Hitchcock Presents episode \"A very happy ending\" the same year. His first starring role was in Russkies (1987). He later co-starred in Ron Howard's Parenthood (1989), in which he was credited as Leaf Phoenix.\n\nPhoenix served as one of the executive producers of a television show called 4Real, a half-hour series which showcase celebrity guests on global adventures \"in order to connect with young leaders who are creating social and economic change.\" He is also listed as a producer on the movie We Own the Night. He has directed music videos for the following bands: Ringside, She Wants Revenge, People in Planes, Arckid, Albert Hammond Jr., and Silversun Pickups.",
+      "popularity": 22.571,
+      "place_of_birth": "San Juan, Puerto Rico",
+      "profile_path": "/zixTWuMZ1D8EopgOhLVZ6Js2ux3.jpg",
+      "adult": false,
+      "imdb_id": "nm0001618",
+      "homepage": "https://www.breaktime.tv/"
+    }
+  ]
+}
