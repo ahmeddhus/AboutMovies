@@ -14,8 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_margin="8dp"
+        android:clickable="true"
         android:background="@drawable/main_item_shape"
-        android:src="@drawable/ic_search_black_24dp" />
+        android:src="@drawable/ic_search_black_24dp"
+        android:focusable="true" />
 
     <ScrollView
         android:layout_width="match_parent"
