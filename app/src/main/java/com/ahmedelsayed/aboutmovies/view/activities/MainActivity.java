@@ -67,8 +67,7 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
         mainMoviesAdapter = new MainMoviesAdapter(mainMoviesModels, this);
         rv_popular.setAdapter(mainMoviesAdapter);
         rv_popular.setLayoutManager(new CustomLayoutManager(MainActivity.this,
-                LinearLayoutManager.HORIZONTAL, false, linearLayout.getWidth(),
-                250));
+                LinearLayoutManager.HORIZONTAL, false, linearLayout.getWidth()));
         rv_popular.smoothScrollToPosition(2);
     }
 

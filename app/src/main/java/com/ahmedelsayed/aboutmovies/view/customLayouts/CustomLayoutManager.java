@@ -8,17 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 public class CustomLayoutManager extends LinearLayoutManager {
 
     private int mParentWidth;
-    private int mItemWidth;
 
-    public CustomLayoutManager(Context context, int orientation, boolean reverseLayout, int mParentWidth, int mItemWidth) {
+    public CustomLayoutManager(Context context, int orientation, boolean reverseLayout, int mParentWidth) {
         super(context, orientation, reverseLayout);
         this.mParentWidth = mParentWidth;
-        this.mItemWidth = mItemWidth;
     }
 
     @Override
     public int getPaddingLeft() {
-        return mParentWidth/6  ;
+        return mParentWidth/4  ;
     }
 
     @Override

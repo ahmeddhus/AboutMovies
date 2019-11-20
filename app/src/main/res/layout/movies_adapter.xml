@@ -26,8 +26,8 @@
             <ImageView
                 android:id="@+id/movies"
                 android:background="@color/colorAccent"
-                android:layout_width="130dp"
-                android:layout_height="200dp"
+                android:layout_width="140dp"
+                android:layout_height="210dp"
                 android:scaleType="fitXY"
                 android:layout_gravity="center"
                 app:poster_path="@{movies.poster_path}"/>
