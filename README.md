@@ -1,10 +1,15 @@
 
-## About Movies
-
+## About Movies  
+  
+    
+      
+## Screens
 ![Alt Text](https://i.imgur.com/I7XTHf0.gif) ![Alt Text](https://i.imgur.com/hqOFon5.gif)
 
 ![Alt Text](https://i.imgur.com/Hn3RrYW.gif) ![Alt Text](https://i.imgur.com/s3UgDa5.gif)
-
+  
+  
+    
 ## In this project
 [TMDB API](https://www.themoviedb.org/documentation/api)  
 [Android Jetpack](https://developer.android.com/jetpack/docs/getting-started)  
@@ -16,3 +21,4 @@
 [Retrofit](https://square.github.io/retrofit/)  
 [Gson](https://github.com/google/gson)  
 [Butter Knife](https://jakewharton.github.io/butterknife/)  
+  
