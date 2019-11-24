@@ -16,6 +16,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
@@ -34,7 +35,7 @@ import butterknife.ButterKnife;
 
 import static com.ahmedelsayed.aboutmovies.utils.HelperMethods.Count;
 
-public class SearchableActivity extends AppCompatActivity  implements SeeAllAdapter.OnItemClickListener {
+public class SearchableActivity extends AppCompatActivity implements SeeAllAdapter.OnItemClickListener {
 
     @BindView(R.id.toolbar_search)
     Toolbar toolbar;
@@ -42,6 +43,8 @@ public class SearchableActivity extends AppCompatActivity  implements SeeAllAdap
     RecyclerView rv_search;
     @BindView(R.id.search_loading)
     ImageView loading;
+    @BindView(R.id.empty_rv)
+    TextView empty_rv;
     @BindView(R.id.search_view)
     SearchView search_view;
 
@@ -58,8 +61,8 @@ public class SearchableActivity extends AppCompatActivity  implements SeeAllAdap
 
     private void init() {
         ButterKnife.bind(this);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         searchViewModel.init();
@@ -69,7 +72,7 @@ public class SearchableActivity extends AppCompatActivity  implements SeeAllAdap
                 .into(loading);
     }
 
-    private void searchListener(){
+    private void searchListener() {
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -92,23 +95,30 @@ public class SearchableActivity extends AppCompatActivity  implements SeeAllAdap
     }
 
     private void setRV(List<MoviesModel.Results> mainMoviesModels) {
-        seeAllAdapter = new SeeAllAdapter(SearchableActivity.this, mainMoviesModels, SearchableActivity.this);
-        rv_search.setAdapter(seeAllAdapter);
-        rv_search.setLayoutManager(new CustomLayoutSeeAll(SearchableActivity.this,
-                Count(SearchableActivity.this), GridLayoutManager.VERTICAL, false, loading));
+        if (mainMoviesModels.isEmpty()) {
+            empty_rv.setVisibility(View.VISIBLE);
+            rv_search.setVisibility(View.GONE);
+        } else {
+            empty_rv.setVisibility(View.GONE);
+            rv_search.setVisibility(View.VISIBLE);
+            seeAllAdapter = new SeeAllAdapter(SearchableActivity.this, mainMoviesModels, SearchableActivity.this);
+            rv_search.setAdapter(seeAllAdapter);
+            rv_search.setLayoutManager(new CustomLayoutSeeAll(SearchableActivity.this,
+                    Count(SearchableActivity.this), GridLayoutManager.VERTICAL, false, loading));
+        }
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        finish();
-//        return true;
-//    }
-//
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        finish();
-//    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     public void onItemClikced(int position) {

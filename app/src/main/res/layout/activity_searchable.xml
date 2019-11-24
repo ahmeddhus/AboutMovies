@@ -30,7 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:iconifiedByDefault="false"
-                app:queryHint="Search" />
+                app:queryHint="Search"
+                app:searchIcon="@null" />
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -41,6 +42,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/appbar_search"
         android:layout_margin="8dp" />
+
+    <TextView
+        android:id="@+id/empty_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text=" No\nResults\nFound"
+        android:textStyle="bold"
+        android:textSize="80sp"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"/>
+
 
     <ImageView
         android:id="@+id/search_loading"
