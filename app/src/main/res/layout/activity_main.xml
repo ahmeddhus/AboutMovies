@@ -9,19 +9,6 @@
     android:orientation="vertical"
     tools:context=".view.activities.MainActivity">
 
-    <ImageView
-        android:id="@+id/search_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_margin="8dp"
-        android:background="@drawable/main_item_shape"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_search_black_24dp"
-        android:visibility="gone" />
-
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,6 +24,18 @@
             app:title="@string/app_name"
             app:titleTextColor="@color/colorAccent"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <ImageView
+                android:id="@+id/search_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="8dp"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="goSearch"
+                android:src="@drawable/ic_search_black_24dp" />
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

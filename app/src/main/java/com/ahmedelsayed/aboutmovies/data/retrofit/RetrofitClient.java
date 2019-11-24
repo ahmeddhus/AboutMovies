@@ -16,13 +16,13 @@ public interface RetrofitClient {
 
     @GET("movie/popular")
     Call<MoviesModel> getPopularMovies(@Query("api_key") String apiKey,
-                                @Query("language") String language,
-                                @Query("page") int page);
+                                       @Query("language") String language,
+                                       @Query("page") int page);
 
     @GET("movie/top_rated")
     Call<MoviesModel> getTopMovies(@Query("api_key") String apiKey,
-                                @Query("language") String language,
-                                @Query("page") int page);
+                                   @Query("language") String language,
+                                   @Query("page") int page);
 
     @GET("movie/now_playing")
     Call<MoviesModel> getNowMovies(@Query("api_key") String apiKey,
@@ -31,10 +31,10 @@ public interface RetrofitClient {
 
     @GET("movie/upcoming")
     Call<MoviesModel> getComingMovies(@Query("api_key") String apiKey,
-                                   @Query("language") String language,
-                                   @Query("page") int page);
+                                      @Query("language") String language,
+                                      @Query("page") int page);
 
-    @GET("movie/{movie_id}?api_key="+ Constants.API_KEY)
+    @GET("movie/{movie_id}?api_key=" + Constants.API_KEY)
     Call<MovieDetailsModel> getMDetails(@Path("movie_id") int movieId);
 
     @GET("movie/{movie_id}/videos")
@@ -44,7 +44,12 @@ public interface RetrofitClient {
     @GET("movie/{movie_id}/credits")
     Call<CreditsModel> getCredits(@Path("movie_id") int movieId,
                                   @Query("api_key") String apiKey);
+
     @GET("person/{person_id}")
     Call<PeopleModel> getPeople(@Path("person_id") int persoId,
                                 @Query("api_key") String apiKey);
+
+    @GET("search/movie")
+    Call<MoviesModel> getSearchableMovies(@Query("api_key") String apiKey,
+                                          @Query("query") String query);
 }

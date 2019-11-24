@@ -106,5 +106,9 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
         startActivity(new Intent(this, MovieDetailsActivity.class).
                 putExtra(Constants.MOVIE_ID, movie_id));
     }
+
+    public void goSearch(View view) {
+        startActivity(new Intent(MainActivity.this, SearchableActivity.class));
+    }
 }
 

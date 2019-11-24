@@ -32,6 +32,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.ahmedelsayed.aboutmovies.utils.HelperMethods.Count;
+
 
 public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnItemClickListener{
 
@@ -117,20 +119,13 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
         if(!paging) {
             seeAllAdapter = new SeeAllAdapter(SeeAllMovies.this, moviesModelsAction, SeeAllMovies.this);
             rv.setAdapter(seeAllAdapter);
-            rv.setLayoutManager(new CustomLayoutSeeAll(SeeAllMovies.this, count(), GridLayoutManager.VERTICAL, false, loading));
+            rv.setLayoutManager(new CustomLayoutSeeAll(SeeAllMovies.this, Count(SeeAllMovies.this),
+                    GridLayoutManager.VERTICAL, false, loading));
         }
         else{
             loading.setVisibility(View.GONE);
             seeAllAdapter.notifyDataSetChanged ();
         }
-    }
-
-
-    private int count(){
-        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int noOfColumns = (int) (dpWidth / 150);
-        return noOfColumns;
     }
 
     @Override
