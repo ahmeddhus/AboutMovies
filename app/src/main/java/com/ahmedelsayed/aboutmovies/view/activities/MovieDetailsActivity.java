@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -49,6 +50,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
     RecyclerView rv_cast;
     @BindView(R.id.rv_crew)
     RecyclerView rv_crew;
+    @BindView(R.id.details_refresh)
+    SwipeRefreshLayout refreshLayout;
 
     MDetailsViewModel mDetailsViewModel;
     VideosAdapter videosAdapter;
@@ -62,6 +65,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 DataBindingUtil.setContentView(MovieDetailsActivity.this, R.layout.activity_movie_details);
         init();
         getData(binding);
+
+        refreshLayout.setOnRefreshListener(() -> getData(binding));
 
         if (!IsConnected(MovieDetailsActivity.this))
             Toast.makeText(MovieDetailsActivity.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
@@ -86,6 +91,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 binding.setMdetails(movieDetailsModel);
             else if (IsConnected(MovieDetailsActivity.this))
                 Toast.makeText(MovieDetailsActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+            refreshLayout.setRefreshing(false);
         });
 
         mDetailsViewModel.getVideos().observe(this, videosModel -> {
@@ -93,7 +99,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 setYoutubeRV(videosModel.getResults());
             else if (IsConnected(MovieDetailsActivity.this))
                 Toast.makeText(MovieDetailsActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
-
+            refreshLayout.setRefreshing(false);
         });
 
         mDetailsViewModel.getCredits().observe(this, creditsModel -> {
@@ -102,6 +108,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 setCrewRV(creditsModel.getCrew());
             } else if (IsConnected(MovieDetailsActivity.this))
                 Toast.makeText(MovieDetailsActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+            refreshLayout.setRefreshing(false);
         });
     }
 

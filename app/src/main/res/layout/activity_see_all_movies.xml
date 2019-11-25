@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
     tools:context=".view.activities.SeeAllMovies">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,28 +15,43 @@
         android:layout_margin="5dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_seeall"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="MOVIES"
-            app:titleTextColor="@color/colorAccent"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            app:titleTextColor="@color/colorAccent" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_seeall"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/seeall_refresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar_seeall"
-        android:layout_margin="8dp"/>
+        android:layout_below="@+id/appbar_seeall">
 
-    <ImageView
-        android:id="@+id/loading"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="8dp"
-        android:visibility="gone"
-        android:layout_alignParentBottom="true"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_seeall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_margin="8dp" />
+
+            <ImageView
+                android:id="@+id/loading"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="8dp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </RelativeLayout>

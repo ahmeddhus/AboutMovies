@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
     RecyclerView rv_coming;
     @BindView(R.id.s)
     LinearLayout linearLayout;
+    @BindView(R.id.main_refresh)
+    SwipeRefreshLayout refreshLayout;
 
     MainMoviesAdapter mainMoviesAdapter;
     MoviesAdapter moviesAdapter;
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         getData();
-
+        refreshLayout.setOnRefreshListener(this::getData);
         if (!IsConnected(MainActivity.this))
             Toast.makeText(MainActivity.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
     }
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
                 popularMoviesModels1 = moviesModel.getResults();
             } else if (IsConnected(MainActivity.this))
                 Toast.makeText(MainActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
-
+            refreshLayout.setRefreshing(false);
         });
 
         moviesViewModel.getTopMovies(1).observe(this, moviesModel -> {
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
                 setRV(moviesModel.getResults(), rv_top);
             else if (IsConnected(MainActivity.this))
                 Toast.makeText(MainActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+            refreshLayout.setRefreshing(false);
 
         });
         moviesViewModel.getNowMovies(1).observe(this, moviesModel -> {
@@ -81,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
                 setRV(moviesModel.getResults(), rv_now);
             else if (IsConnected(MainActivity.this))
                 Toast.makeText(MainActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+            refreshLayout.setRefreshing(false);
         });
 
         moviesViewModel.getComingMovies(1).observe(this, moviesModel -> {
@@ -88,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
                 setRV(moviesModel.getResults(), rv_coming);
             else if (IsConnected(MainActivity.this))
                 Toast.makeText(MainActivity.this, "Can error has occurred", Toast.LENGTH_LONG).show();
+            refreshLayout.setRefreshing(false);
         });
     }
 
@@ -105,28 +111,6 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
         rv.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 
-    public void seeAll(View view) {
-        switch (view.getId()) {
-            case R.id.allPopular:
-                startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
-                        .setAction(Constants.POPULAR));
-                break;
-            case R.id.allTop:
-                startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
-                        .setAction(Constants.TOP_MOVIES));
-                break;
-            case R.id.allNow:
-                startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
-                        .setAction(Constants.NOW_PLAYING));
-                break;
-            case R.id.allComing:
-                startActivity(new Intent(MainActivity.this, SeeAllMovies.class)
-                        .setAction(Constants.COMING_SOON));
-                break;
-            default:
-                break;
-        }
-    }
 
     @Override
     public void onItemClikced(int position, ImageView imageView) {

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,6 +45,8 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
     RecyclerView rv;
     @BindView(R.id.loading)
     ImageView loading;
+    @BindView(R.id.seeall_refresh)
+    SwipeRefreshLayout refreshLayout;
 
     SeeAllAdapter seeAllAdapter;
     MoviesViewModel moviesViewModel;
@@ -56,6 +59,9 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
         setContentView(R.layout.activity_see_all_movies);
         init();
 
+        setData(1, false);
+        refreshLayout.setOnRefreshListener(() -> setData(1, false));
+
         if (!IsConnected(SeeAllMovies.this))
             Toast.makeText(SeeAllMovies.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
     }
@@ -66,7 +72,6 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         moviesViewModel.init();
-        setData(1, false);
 
         Glide.with(SeeAllMovies.this)
                 .load(R.drawable.loading)
@@ -97,6 +102,7 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
                             setRV(moviesModel.getResults(), paging);
                         else if (IsConnected(SeeAllMovies.this))
                             Toast.makeText(SeeAllMovies.this, "an error has occurred", Toast.LENGTH_LONG).show();
+                        refreshLayout.setRefreshing(false);
                     });
                     break;
 
@@ -107,6 +113,7 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
                             setRV(moviesModel.getResults(), paging);
                         else if (IsConnected(SeeAllMovies.this))
                             Toast.makeText(SeeAllMovies.this, "an error has occurred", Toast.LENGTH_LONG).show();
+                        refreshLayout.setRefreshing(false);
                     });
                     break;
 
@@ -117,6 +124,7 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
                             setRV(moviesModel.getResults(), paging);
                         else if (IsConnected(SeeAllMovies.this))
                             Toast.makeText(SeeAllMovies.this, "an error has occurred", Toast.LENGTH_LONG).show();
+                        refreshLayout.setRefreshing(false);
                     });
                     break;
 
@@ -127,6 +135,7 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
                             setRV(moviesModel.getResults(), paging);
                         else if (IsConnected(SeeAllMovies.this))
                             Toast.makeText(SeeAllMovies.this, "an error has occurred", Toast.LENGTH_LONG).show();
+                        refreshLayout.setRefreshing(false);
                     });
                     break;
 

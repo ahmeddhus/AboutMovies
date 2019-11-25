@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,8 @@ public class PeopleActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar_people)
     Toolbar toolbar;
+    @BindView(R.id.people_refresh)
+    SwipeRefreshLayout refreshLayout;
 
     PeopleViewModel peopleViewModel;
 
@@ -39,6 +42,8 @@ public class PeopleActivity extends AppCompatActivity {
                 DataBindingUtil.setContentView(PeopleActivity.this, R.layout.activity_people);
         init();
         getData(binding);
+
+        refreshLayout.setOnRefreshListener(() -> getData(binding));
 
         if (!IsConnected(PeopleActivity.this))
             Toast.makeText(PeopleActivity.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
@@ -63,6 +68,7 @@ public class PeopleActivity extends AppCompatActivity {
                 binding.setPeople(peopleModel);
             else if (IsConnected(PeopleActivity.this))
                 Toast.makeText(PeopleActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+            refreshLayout.setRefreshing(false);
         });
     }
 

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.SearchManager;
 import android.content.Intent;
@@ -49,6 +50,9 @@ public class SearchableActivity extends AppCompatActivity implements SeeAllAdapt
     TextView empty_rv;
     @BindView(R.id.search_view)
     SearchView search_view;
+    @BindView(R.id.search_refresh)
+    SwipeRefreshLayout refreshLayout;
+
 
     SeeAllAdapter seeAllAdapter;
     SearchViewModel searchViewModel;
@@ -72,6 +76,9 @@ public class SearchableActivity extends AppCompatActivity implements SeeAllAdapt
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         searchViewModel.init();
         setData("A");
+
+        refreshLayout.setOnRefreshListener(() -> setData("A"));
+
         Glide.with(SearchableActivity.this)
                 .load(R.drawable.loading)
                 .into(loading);
@@ -99,6 +106,7 @@ public class SearchableActivity extends AppCompatActivity implements SeeAllAdapt
                 loading.setVisibility(View.GONE);
             }else if (IsConnected(SearchableActivity.this))
                 Toast.makeText(SearchableActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+            refreshLayout.setRefreshing(false);
         });
     }
 

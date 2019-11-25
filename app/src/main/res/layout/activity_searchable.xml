@@ -36,29 +36,42 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_search"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/search_refresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar_search"
-        android:layout_margin="8dp" />
+        android:layout_below="@+id/appbar_search">
 
-    <TextView
-        android:id="@+id/empty_rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text=" No\nResults\nFound"
-        android:textStyle="bold"
-        android:textSize="80sp"
-        android:textColor="@color/colorPrimary"
-        android:visibility="gone"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp" />
+
+            <TextView
+                android:id="@+id/empty_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=" No\nResults\nFound"
+                android:textStyle="bold"
+                android:textSize="80sp"
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone"/>
 
 
-    <ImageView
-        android:id="@+id/search_loading"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="8dp" />
+            <ImageView
+                android:id="@+id/search_loading"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="8dp" />
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 </RelativeLayout>
