@@ -14,10 +14,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.databinding.ActivityMovieDetailsBinding;
 import com.ahmedelsayed.aboutmovies.models.CreditsModel;
+import com.ahmedelsayed.aboutmovies.models.MovieDetailsModel;
 import com.ahmedelsayed.aboutmovies.models.VideosModel;
 import com.ahmedelsayed.aboutmovies.utils.Constants;
 import com.ahmedelsayed.aboutmovies.view.adapters.CastAdapter;
@@ -29,6 +31,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.ahmedelsayed.aboutmovies.utils.HelperMethods.IsConnected;
+import static com.ahmedelsayed.aboutmovies.utils.HelperMethods.NoConnectionDialog;
 
 public class MovieDetailsActivity extends AppCompatActivity {
 
@@ -57,6 +62,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 DataBindingUtil.setContentView(MovieDetailsActivity.this, R.layout.activity_movie_details);
         init();
         getData(binding);
+
+        if (!IsConnected(MovieDetailsActivity.this))
+            Toast.makeText(MovieDetailsActivity.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
     }
 
     private void init() {
@@ -73,12 +81,27 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Log.e("ID", movie_id + "");
 
         mDetailsViewModel.inti(movie_id);
-        mDetailsViewModel.getMDetails().observe(this, binding::setMdetails);
+        mDetailsViewModel.getMDetails().observe(this, movieDetailsModel -> {
+            if (movieDetailsModel != null)
+                binding.setMdetails(movieDetailsModel);
+            else if (IsConnected(MovieDetailsActivity.this))
+                Toast.makeText(MovieDetailsActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+        });
 
-        mDetailsViewModel.getVideos().observe(this, videosModel -> setYoutubeRV(videosModel.getResults()));
+        mDetailsViewModel.getVideos().observe(this, videosModel -> {
+            if (videosModel != null)
+                setYoutubeRV(videosModel.getResults());
+            else if (IsConnected(MovieDetailsActivity.this))
+                Toast.makeText(MovieDetailsActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+
+        });
+
         mDetailsViewModel.getCredits().observe(this, creditsModel -> {
-            setCastRV(creditsModel.getCast());
-            setCrewRV(creditsModel.getCrew());
+            if (creditsModel != null) {
+                setCastRV(creditsModel.getCast());
+                setCrewRV(creditsModel.getCrew());
+            } else if (IsConnected(MovieDetailsActivity.this))
+                Toast.makeText(MovieDetailsActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
         });
     }
 
@@ -89,14 +112,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 (MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 
-    private void setCastRV(List<CreditsModel.Cast> casts){
+    private void setCastRV(List<CreditsModel.Cast> casts) {
         castAdapter = new CastAdapter(casts, MovieDetailsActivity.this);
         rv_cast.setAdapter(castAdapter);
         rv_cast.setLayoutManager(new LinearLayoutManager
                 (MovieDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
     }
 
-    private void setCrewRV(List<CreditsModel.Crew> crews){
+    private void setCrewRV(List<CreditsModel.Crew> crews) {
         crewAdapter = new CrewAdapter(crews, MovieDetailsActivity.this);
         rv_crew.setAdapter(crewAdapter);
         rv_crew.setLayoutManager(new LinearLayoutManager

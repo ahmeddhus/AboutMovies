@@ -63,6 +63,7 @@ public class MDetailsRepository {
             @Override
             public void onFailure(Call<VideosModel> call, Throwable t) {
                 newData.setValue(null);
+
                 Log.e("getMovieonFailure: ", t.getMessage());
             }
         });

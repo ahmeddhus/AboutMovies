@@ -33,9 +33,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.ahmedelsayed.aboutmovies.utils.HelperMethods.Count;
+import static com.ahmedelsayed.aboutmovies.utils.HelperMethods.IsConnected;
 
 
-public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnItemClickListener{
+public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnItemClickListener {
 
     @BindView(R.id.toolbar_seeall)
     Toolbar toolbar;
@@ -54,9 +55,12 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_all_movies);
         init();
+
+        if (!IsConnected(SeeAllMovies.this))
+            Toast.makeText(SeeAllMovies.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
     }
 
-    private void init(){
+    private void init() {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -82,49 +86,71 @@ public class SeeAllMovies extends AppCompatActivity implements SeeAllAdapter.OnI
         });
     }
 
-    private void setData(int pageNum, boolean paging){
+    private void setData(int pageNum, boolean paging) {
         Intent intent = SeeAllMovies.this.getIntent();
-        if (intent.getAction() != null){
-            switch (intent.getAction()){
+        if (intent.getAction() != null) {
+            switch (intent.getAction()) {
                 case Constants.POPULAR:
                     toolbar.setTitle("Popular Movies");
-                    moviesViewModel.getPopularMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
+                    moviesViewModel.getPopularMovies(pageNum).observe(this, moviesModel -> {
+                        if (moviesModel != null)
+                            setRV(moviesModel.getResults(), paging);
+                        else if (IsConnected(SeeAllMovies.this))
+                            Toast.makeText(SeeAllMovies.this, "an error has occurred", Toast.LENGTH_LONG).show();
+                    });
                     break;
+
                 case Constants.TOP_MOVIES:
                     toolbar.setTitle("Top Movies");
-                    moviesViewModel.getTopMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
+                    moviesViewModel.getTopMovies(pageNum).observe(this, moviesModel -> {
+                        if (moviesModel != null)
+                            setRV(moviesModel.getResults(), paging);
+                        else if (IsConnected(SeeAllMovies.this))
+                            Toast.makeText(SeeAllMovies.this, "an error has occurred", Toast.LENGTH_LONG).show();
+                    });
                     break;
+
                 case Constants.NOW_PLAYING:
                     toolbar.setTitle("Now Playing");
-                    moviesViewModel.getNowMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
+                    moviesViewModel.getNowMovies(pageNum).observe(this, moviesModel -> {
+                        if (moviesModel != null)
+                            setRV(moviesModel.getResults(), paging);
+                        else if (IsConnected(SeeAllMovies.this))
+                            Toast.makeText(SeeAllMovies.this, "an error has occurred", Toast.LENGTH_LONG).show();
+                    });
                     break;
+
                 case Constants.COMING_SOON:
                     toolbar.setTitle("Coming Soon");
-                    moviesViewModel.getComingMovies(pageNum).observe(this, moviesModel -> setRV(moviesModel.getResults(), paging));
+                    moviesViewModel.getComingMovies(pageNum).observe(this, moviesModel -> {
+                        if (moviesModel != null)
+                            setRV(moviesModel.getResults(), paging);
+                        else if (IsConnected(SeeAllMovies.this))
+                            Toast.makeText(SeeAllMovies.this, "an error has occurred", Toast.LENGTH_LONG).show();
+                    });
                     break;
+
                 default:
                     Toast.makeText(SeeAllMovies.this, "ERROR!", Toast.LENGTH_LONG).show();
                     finish();
                     break;
             }
-        }
-        else {
+        } else {
             Toast.makeText(SeeAllMovies.this, "ERROR!", Toast.LENGTH_LONG).show();
         }
     }
 
-    private void setRV(List<MoviesModel.Results> mainMoviesModels, boolean paging){
+    private void setRV(List<MoviesModel.Results> mainMoviesModels, boolean paging) {
         moviesModelsAction.addAll(mainMoviesModels);
 
-        if(!paging) {
+        if (!paging) {
             seeAllAdapter = new SeeAllAdapter(SeeAllMovies.this, moviesModelsAction, SeeAllMovies.this);
             rv.setAdapter(seeAllAdapter);
             rv.setLayoutManager(new CustomLayoutSeeAll(SeeAllMovies.this, Count(SeeAllMovies.this),
                     GridLayoutManager.VERTICAL, false, loading));
-        }
-        else{
+        } else {
             loading.setVisibility(View.GONE);
-            seeAllAdapter.notifyDataSetChanged ();
+            seeAllAdapter.notifyDataSetChanged();
         }
     }
 

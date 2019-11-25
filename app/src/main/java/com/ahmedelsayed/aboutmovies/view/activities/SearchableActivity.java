@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ahmedelsayed.aboutmovies.R;
 import com.ahmedelsayed.aboutmovies.models.MoviesModel;
@@ -34,6 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.ahmedelsayed.aboutmovies.utils.HelperMethods.Count;
+import static com.ahmedelsayed.aboutmovies.utils.HelperMethods.IsConnected;
 
 public class SearchableActivity extends AppCompatActivity implements SeeAllAdapter.OnItemClickListener {
 
@@ -57,6 +59,9 @@ public class SearchableActivity extends AppCompatActivity implements SeeAllAdapt
         setContentView(R.layout.activity_searchable);
         init();
         searchListener();
+
+        if (!IsConnected(SearchableActivity.this))
+            Toast.makeText(SearchableActivity.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
     }
 
     private void init() {
@@ -89,8 +94,11 @@ public class SearchableActivity extends AppCompatActivity implements SeeAllAdapt
 
     private void setData(String query) {
         searchViewModel.getSearchableMovies(query).observe(this, moviesModel -> {
-            setRV(moviesModel.getResults());
-            loading.setVisibility(View.GONE);
+            if (moviesModel != null) {
+                setRV(moviesModel.getResults());
+                loading.setVisibility(View.GONE);
+            }else if (IsConnected(SearchableActivity.this))
+                Toast.makeText(SearchableActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
         });
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -23,7 +24,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+
+import static com.ahmedelsayed.aboutmovies.utils.HelperMethods.IsConnected;
 
 public class MainActivity extends AppCompatActivity implements MainMoviesAdapter.OnItemClickListener {
 
@@ -49,18 +51,44 @@ public class MainActivity extends AppCompatActivity implements MainMoviesAdapter
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         getData();
+
+        if (!IsConnected(MainActivity.this))
+            Toast.makeText(MainActivity.this, "Check Internet Connection", Toast.LENGTH_LONG).show();
     }
 
     private void getData() {
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         moviesViewModel.init();
+
         moviesViewModel.getPopularMovies(1).observe(this, moviesModel -> {
-            setRVPopular(moviesModel.getResults());
-            popularMoviesModels1 = moviesModel.getResults();
+            if (moviesModel != null) {
+                setRVPopular(moviesModel.getResults());
+                popularMoviesModels1 = moviesModel.getResults();
+            } else if (IsConnected(MainActivity.this))
+                Toast.makeText(MainActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+
         });
-        moviesViewModel.getTopMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_top));
-        moviesViewModel.getNowMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_now));
-        moviesViewModel.getComingMovies(1).observe(this, moviesModel -> setRV(moviesModel.getResults(), rv_coming));
+
+        moviesViewModel.getTopMovies(1).observe(this, moviesModel -> {
+            if (moviesModel != null)
+                setRV(moviesModel.getResults(), rv_top);
+            else if (IsConnected(MainActivity.this))
+                Toast.makeText(MainActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+
+        });
+        moviesViewModel.getNowMovies(1).observe(this, moviesModel -> {
+            if (moviesModel != null)
+                setRV(moviesModel.getResults(), rv_now);
+            else if (IsConnected(MainActivity.this))
+                Toast.makeText(MainActivity.this, "an error has occurred", Toast.LENGTH_LONG).show();
+        });
+
+        moviesViewModel.getComingMovies(1).observe(this, moviesModel -> {
+            if (moviesModel != null)
+                setRV(moviesModel.getResults(), rv_coming);
+            else if (IsConnected(MainActivity.this))
+                Toast.makeText(MainActivity.this, "Can error has occurred", Toast.LENGTH_LONG).show();
+        });
     }
 
     private void setRVPopular(List<MoviesModel.Results> mainMoviesModels) {
